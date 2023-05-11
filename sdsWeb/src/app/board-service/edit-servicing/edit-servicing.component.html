@@ -1,0 +1,41 @@
+<!--<pre>{{ service | json }}</pre>-->
+<form>
+  <h1>ATUALIZAR SERVIÇOS</h1>
+
+<!--  <mat-form-field class="form">-->
+<!--    <mat-label>ID</mat-label>-->
+<!--    <input matInput [(ngModel)]="service.id" type="text" name="id">-->
+<!--  </mat-form-field>-->
+
+  <mat-form-field class="form">
+    <mat-label>Nome</mat-label>
+    <input matInput [(ngModel)]="servicing.name" type="text" name="name">
+  </mat-form-field>
+
+  <mat-form-field class="form">
+    <mat-label>Preço</mat-label>
+    <input matInput [(ngModel)]="servicing.price" type="text" name="price">
+  </mat-form-field>
+
+  <mat-form-field class="form">
+    <mat-label>Descrição</mat-label>
+    <textarea matInput [(ngModel)]="servicing.description" type="text" name="description"></textarea>
+  </mat-form-field>
+
+<!--  <mat-form-field class="form">-->
+<!--    <mat-label>Imangem</mat-label>-->
+<!--    <textarea matInput [(ngModel)]="servicing.images" type="text" name="images"></textarea>-->
+<!--  </mat-form-field>-->
+
+<!--  <mat-form-field class="form">-->
+<!--    <mat-label>Solicitação</mat-label>-->
+<!--    <textarea matInput [(ngModel)]="servicing.solicitations" type="text" name="solicitations"></textarea>-->
+<!--  </mat-form-field>-->
+
+  <div class="buttons">
+    <button (click)="updateService()" class="mat-elevation-z8" mat-stroked-button color="primary">ATUALIZAR</button>
+    <button (click)="cancel()" class="mat-elevation-z8" mat-stroked-button color="warn">CANCELAR</button>
+
+  </div>
+</form>
+

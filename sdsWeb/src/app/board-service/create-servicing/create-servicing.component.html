@@ -1,0 +1,44 @@
+<form>
+  <h1>ADICIONAR SERVIÇOS</h1>
+
+
+  <mat-form-field class="form">
+    <mat-label>Nome</mat-label>
+    <input matInput [(ngModel)]="servicing.name" type="text" name="name" placeholder="Ex. Computação" required>
+  </mat-form-field>
+
+  <mat-form-field class="form">
+    <mat-label>Descrição</mat-label>
+    <textarea matInput [(ngModel)]="servicing.description" type="text" name="description" placeholder="Ex. Sistema de Gestão Comercial" required></textarea>
+  </mat-form-field>
+
+  <mat-form-field class="form">
+    <mat-label>Preço</mat-label>
+    <input matInput [(ngModel)]="servicing.price" type="text" name="price" placeholder="Ex. 250.000.00" required>
+  </mat-form-field>
+
+  <mat-form-field class="form">
+    <mat-label>Image</mat-label>
+    <input matInput [(ngModel)]="servicing.images" type="text" name="images" placeholder="Select a image">
+  </mat-form-field>
+
+<!--  <mat-form-field class="form">-->
+<!--    <mat-label>Solicitação</mat-label>-->
+<!--    <input matInput [(ngModel)]="servicing.solicitations" type="text" name="solicitation" placeholder="Type of solicitation">-->
+<!--  </mat-form-field>-->
+
+<!--  <mat-form-field class="form">-->
+<!--    <mat-label>Data de Registro</mat-label>-->
+<!--    <input matInput [matDatepicker]="picker" [(ngModel)]="service.dateRegistration" name="dateRegistration" placeholder="Escolha uma data">-->
+<!--    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>-->
+<!--    <mat-datepicker #picker></mat-datepicker>-->
+<!--  </mat-form-field>-->
+
+
+  <div class="buttons">
+    <button (click)="createService()" class="mat-elevation-z8" mat-stroked-button color="primary">ADICIONAR</button>
+    <button (click)="cancel()" class="mat-elevation-z8" mat-stroked-button color="warn">CANCELAR</button>
+
+  </div>
+</form>
+
