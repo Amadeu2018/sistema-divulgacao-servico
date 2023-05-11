@@ -1,0 +1,5 @@
+com\javachinna\repo\RoleRepository.class
+com\javachinna\model\Role.class
+com\javachinna\model\User.class
+com\javachinna\repo\UserRepository.class
+META-INF\spring-configuration-metadata.json

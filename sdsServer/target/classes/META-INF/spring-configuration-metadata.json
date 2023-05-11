@@ -1,0 +1,39 @@
+{
+  "groups": [
+    {
+      "name": "app",
+      "type": "com.sds.amasoft.config.AppProperties",
+      "sourceType": "com.sds.amasoft.config.AppProperties"
+    },
+    {
+      "name": "app.auth",
+      "type": "com.sds.amasoft.config.AppProperties$Auth",
+      "sourceType": "com.sds.amasoft.config.AppProperties",
+      "sourceMethod": "getAuth()"
+    },
+    {
+      "name": "app.oauth2",
+      "type": "com.sds.amasoft.config.AppProperties$OAuth2",
+      "sourceType": "com.sds.amasoft.config.AppProperties",
+      "sourceMethod": "getOauth2()"
+    }
+  ],
+  "properties": [
+    {
+      "name": "app.auth.token-expiration-msec",
+      "type": "java.lang.Long",
+      "sourceType": "com.sds.amasoft.config.AppProperties$Auth"
+    },
+    {
+      "name": "app.auth.token-secret",
+      "type": "java.lang.String",
+      "sourceType": "com.sds.amasoft.config.AppProperties$Auth"
+    },
+    {
+      "name": "app.oauth2.authorized-redirect-uris",
+      "type": "java.util.List<java.lang.String>",
+      "sourceType": "com.sds.amasoft.config.AppProperties$OAuth2"
+    }
+  ],
+  "hints": []
+}
