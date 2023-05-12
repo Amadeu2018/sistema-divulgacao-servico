@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { ServicingService } from '../_services/servicing.service';
-import { Servicing } from '../model/servicing.model';
+import {Component, OnInit} from '@angular/core';
+import {ServicingService} from '../_services/servicing.service';
+import {Servicing} from '../model/servicing.model';
 import {MatDialog} from '@angular/material/dialog';
 import {ActivatedRoute, Router} from '@angular/router';
 import {EditServicingComponent} from './edit-servicing/edit-servicing.component';
@@ -35,7 +35,8 @@ export class BoardServiceComponent implements OnInit {
   constructor(private servicingService: ServicingService,
               private activatedRoute: ActivatedRoute,
               private router: Router,
-              private dialog: MatDialog) { }
+              private dialog: MatDialog) {
+  }
 
   ngOnInit(): void {
     this.servicingService.listAll()

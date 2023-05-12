@@ -1,57 +1,50 @@
-<mat-table [dataSource]="page?.content">
-  <ng-container matColumnDef="id">
-    <mat-header-cell>ID</mat-header-cell>
-    <mat-cell>{{ solicitation.id }}</mat-cell>
-  </ng-container>
-  <ng-container matColumnDef="date">
-    <mat-header-cell>Date</mat-header-cell>
-<!--    <mat-cell>{{ solicitation.date | date }}</mat-cell>-->
-    <mat-cell>{{ solicitation.date }}</mat-cell>
-  </ng-container>
-  <ng-container matColumnDef="hour">
-    <mat-header-cell>Hour</mat-header-cell>
-<!--    <mat-cell>{{ solicitation.hour | time }}</mat-cell>-->
-    <mat-cell>{{ solicitation.hour }}</mat-cell>
-  </ng-container>
-  <ng-container matColumnDef="status">
-    <mat-header-cell>Status</mat-header-cell>
-    <mat-cell>{{ solicitation.status }}</mat-cell>
-  </ng-container>
-  <ng-container matColumnDef="user">
-    <mat-header-cell>User</mat-header-cell>
-    <mat-cell>{{ solicitation.user.name }}</mat-cell>
-  </ng-container>
-  <ng-container matColumnDef="service">
-    <mat-header-cell>Service</mat-header-cell>
-    <mat-cell>{{ solicitation.service.name }}</mat-cell>
-  </ng-container>
-  <mat-header-row *matHeaderRowDef="['id', 'date', 'hour', 'status', 'user', 'service']"></mat-header-row>
-  <mat-row *matRowDef="let solicitation; columns: ['id', 'date', 'hour', 'status', 'user', 'service']"></mat-row>
-</mat-table>
-<!--<mat-paginator [length]="page?.totalElements" [pageSize]="page?.size" [pageSizeOptions]="[10, 20, 50, 100]"></mat-paginator>-->
+<pre>{{ page | json }}</pre>
 
+<div class="content">
+  <div class="title">
+    <h1>SOLICITAÇÕES</h1>
+  </div>
+  <div class="buttons">
+    <button class="mat-elevation-z8" mat-stroked-button color="primary">BUSCAR POR STATUS</button>
+  </div>
+  <div class="mat-elevation-z8 content-table">
+    <table class="table" mat-table [dataSource]="dataSource">
 
-<!--<p>list-solicitation works!</p>-->
-<!--&lt;!&ndash; solicitation component template &ndash;&gt;-->
-<!--<table>-->
-<!--  <thead>-->
-<!--  <tr>-->
-<!--    <th>ID</th>-->
-<!--    <th>date</th>-->
-<!--    <th>hour</th>-->
-<!--    <th>status</th>-->
-<!--    <th>user</th>-->
-<!--    <th>service</th>-->
-<!--  </tr>-->
-<!--  </thead>-->
-<!--  <tbody>-->
-<!--  <tr *ngFor="let solicitation of solicitations">-->
-<!--    <td>{{ solicitation.id }}</td>-->
-<!--    <td>{{ solicitation.date }}</td>-->
-<!--    <td>{{ solicitation.hour }}</td>-->
-<!--    <td>{{ solicitation.status }}</td>-->
-<!--    <td>{{ solicitation.user }}</td>-->
-<!--    <td>{{ solicitation.service }}</td>-->
-<!--  </tr>-->
-<!--  </tbody>-->
-<!--</table>-->
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef> ID </th>
+        <td mat-cell *matCellDef="let row"> {{ row.id }} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="date">
+        <th mat-header-cell *matHeaderCellDef> DATA </th>
+        <td mat-cell *matCellDef="let row"> {{ row.date }} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="hour">
+        <th mat-header-cell *matHeaderCellDef> HORA </th>
+        <td mat-cell *matCellDef="let row"> {{ row.hour }} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="status">
+        <th mat-header-cell *matHeaderCellDef> STATUS </th>
+        <td mat-cell *matCellDef="let row"> {{ row.status }} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="user">
+        <th mat-header-cell *matHeaderCellDef> USUÁRIO </th>
+        <td mat-cell *matCellDef="let row"> {{ row.user.name }} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="service">
+        <th mat-header-cell *matHeaderCellDef> SERVIÇO </th>
+        <td mat-cell *matCellDef="let row"> {{ row.service.name }} </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="['id', 'date', 'hour', 'status', 'user', 'service']"></tr>
+      <tr mat-row *matRowDef="let row; columns: ['id', 'date', 'hour', 'status', 'user', 'service']"></tr>
+
+    </table>
+    <mat-paginator [length]="page?.totalElements" [pageSize]="page?.size" [pageSizeOptions]="[10, 20, 50, 100]"></mat-paginator>
+  </div>
+</div>
+

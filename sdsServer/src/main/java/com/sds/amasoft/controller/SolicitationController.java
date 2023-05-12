@@ -7,11 +7,15 @@ import com.sds.amasoft.service.SolicitationServiceImpl;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.List;
 
 @RestController
@@ -34,6 +38,14 @@ public class SolicitationController {
         return ResponseEntity.ok(solicitationServiceImpl.listAll(pageable));
     }
 
+//    @GetMapping("/solicitation")
+//    @GetMapping
+//    public ResponseEntity<Page<Solicitation>> listAll(@RequestParam("page") int page, @RequestParam("size") int size) {
+//        Pageable pageable = PageRequest.of(page, size);
+//        return ResponseEntity.ok(solicitationServiceImpl.listAll(pageable));
+//    }
+
+
     @GetMapping("/{id}")
     public ResponseEntity<Solicitation> getById(@PathVariable Long id) {
         Solicitation solicitation = solicitationServiceImpl.findById(id);
@@ -46,11 +58,28 @@ public class SolicitationController {
 //        return ResponseEntity.ok(solicitations);
 //    }
 
-    @PostMapping
-    public ResponseEntity<Solicitation> create(@RequestBody Solicitation solicitation) {
-        Solicitation createdSolicitation = solicitationServiceImpl.create(solicitation);
-        return ResponseEntity.status(HttpStatus.CREATED).body(createdSolicitation);
-    }
+//    @PostMapping usando este
+//    public ResponseEntity<Solicitation> create(@RequestBody Solicitation solicitation) {
+//        try {
+//            // Converte a string para LocalTime usando um formatador adequado
+//            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
+//            LocalTime time = LocalTime.parse(solicitation.getHour(), formatter);
+//            solicitation.setHour(time);
+//
+//            Solicitation createdSolicitation = solicitationServiceImpl.create(solicitation);
+//            return ResponseEntity.status(HttpStatus.CREATED).body(createdSolicitation);
+//        } catch (DateTimeParseException e) {
+//            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+//        }
+//    }
+
+
+
+//    @PostMapping
+//    public ResponseEntity<Solicitation> create(@RequestBody Solicitation solicitation) {
+//        Solicitation createdSolicitation = solicitationServiceImpl.create(solicitation);
+//        return ResponseEntity.status(HttpStatus.CREATED).body(createdSolicitation);
+//    }
 
     @PutMapping("/{id}")
     public ResponseEntity<Solicitation> update(@PathVariable Long id, @RequestBody Solicitation solicitation) {

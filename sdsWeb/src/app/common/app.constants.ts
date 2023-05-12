@@ -4,7 +4,7 @@ export class AppConstants {
     private static REDIRECT_URL = '?redirect_uri=http://localhost:8081/login';
     public static API_URL = AppConstants.API_BASE_URL + 'api/';
     public static SERVICE_URL = AppConstants.API_BASE_URL + 'api/services';
-    public static SOLICITATION_URL = AppConstants.API_BASE_URL + 'api/solicitation';
+    public static SOLICITATION_URL = AppConstants.API_BASE_URL + 'api/solicitations';
     public static AUTH_API = AppConstants.API_URL + 'auth/';
     public static GOOGLE_AUTH_URL = AppConstants.OAUTH2_URL + 'google' + AppConstants.REDIRECT_URL;
     public static FACEBOOK_AUTH_URL = AppConstants.OAUTH2_URL + 'facebook' + AppConstants.REDIRECT_URL;

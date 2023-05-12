@@ -1,5 +1,7 @@
 package com.sds.amasoft.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -15,6 +17,7 @@ import java.time.LocalTime;
 @NoArgsConstructor
 @Getter
 @Setter
+@JsonIgnoreProperties({"STATUS"})
 @Table(name = "TB_SOLICITATION")
 public class Solicitation implements Serializable {
 
@@ -46,6 +49,7 @@ public class Solicitation implements Serializable {
 //    private Integer status;
 
     @Column(name = "STATUS")
+    @JsonManagedReference
     @Enumerated(EnumType.STRING)
     private Status status;
 

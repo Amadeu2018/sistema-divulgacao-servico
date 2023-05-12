@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../_services/user.service';
+import {Servicing} from "../model/servicing.model";
 
 @Component({
   selector: 'app-home',
@@ -9,6 +10,9 @@ import { UserService } from '../_services/user.service';
 export class HomeComponent implements OnInit {
 
   content: string;
+
+  services: Servicing[] = [];
+  displayedColumns: string[] = ['id', 'name', 'description', 'price', 'images', 'acoes'];
 
   constructor(private userService: UserService) { }
 

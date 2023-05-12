@@ -17,7 +17,7 @@ import java.util.List;
 @NoArgsConstructor
 @Getter
 @Setter
-@JsonIgnoreProperties({"solicitations", "images"})
+@JsonIgnoreProperties({"solicitations", "images", "hibernateLazyInitializer"})
 @Table(name = "TB_SERVICE")
 public class Servicing implements Serializable {
 

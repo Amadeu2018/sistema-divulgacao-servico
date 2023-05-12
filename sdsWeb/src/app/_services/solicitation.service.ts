@@ -16,13 +16,8 @@ export class SolicitationService {
   constructor(private https: HttpClient) { }
 
   listAll(page: number, size: number): Observable<Page<Solicitation>> {
-    return this.https.get<Page<Solicitation>>(`${this.baseUrl}?page=${page}&size=${size}`);
+    // return this.https.get<Page<Solicitation>>(`${this.baseUrl}?page=${page}&size=${size}`);
+    return this.https.get<Page<Solicitation>>(`${this.baseUrl}`);
   }
 
-  // listAll(): Observable<Solicitation[]> {
-  //   return this.https.get<any>(`${this.baseUrl}`)
-  //     .pipe(
-  //       map(response => response.content)
-  //     );
-  // }
 }

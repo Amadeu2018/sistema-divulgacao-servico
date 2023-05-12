@@ -33,6 +33,10 @@ import { CreateServicingComponent } from './board-service/create-servicing/creat
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatNativeDateModule} from '@angular/material/core';
 import { ListSolicitationComponent } from './board-solicitation/list-solicitation/list-solicitation.component';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatSortModule} from '@angular/material/sort';
+import { MatExpansionModule } from '@angular/material/expansion';
+
 
 @NgModule({
   declarations: [
@@ -69,7 +73,10 @@ import { ListSolicitationComponent } from './board-solicitation/list-solicitatio
     MatFormFieldModule,
     MatCardModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatExpansionModule
   ],
   exports: [EditServicingComponent],
   providers: [authInterceptorProviders, MatDatepickerModule, MatNativeDateModule],
