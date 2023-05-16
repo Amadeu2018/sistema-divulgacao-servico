@@ -12,10 +12,17 @@ export class AppComponent implements OnInit {
   showAdminBoard = false;
   showModeratorBoard = false;
   username: string;
+  isCollapsed = true;
 
   constructor(private tokenStorageService: TokenStorageService) { }
 
+  isAuthenticated: TokenStorageService;
+
   ngOnInit(): void {
+    this.login();
+  }
+
+  login(): void {
     this.isLoggedIn = !!this.tokenStorageService.getToken();
 
     if (this.isLoggedIn) {

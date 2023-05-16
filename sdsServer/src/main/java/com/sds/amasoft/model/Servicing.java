@@ -48,6 +48,10 @@ public class Servicing implements Serializable {
     @JsonManagedReference
     private List<Image> images = new ArrayList<>();
 
+    @Column(name = "photo")
+    @Lob
+    private byte[] photo;
+
 //    @OneToMany(mappedBy = "service", cascade = CascadeType.ALL, orphanRemoval = true)
 //    private List<ServiceImage> images = new ArrayList<>();
 

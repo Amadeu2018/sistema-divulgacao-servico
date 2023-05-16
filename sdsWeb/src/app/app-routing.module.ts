@@ -11,12 +11,13 @@ import { BoardAdminComponent } from './board-admin/board-admin.component';
 import { BoardServiceComponent } from './board-service/board-service.component';
 import { EditServicingComponent } from './board-service/edit-servicing/edit-servicing.component';
 import {DeleteServicingComponent} from './board-service/delete-servicing/delete-servicing.component';
-import {CreateServicingComponent} from "./board-service/create-servicing/create-servicing.component";
-import {ListSolicitationComponent} from "./board-solicitation/list-solicitation/list-solicitation.component";
+import {CreateServicingComponent} from './board-service/create-servicing/create-servicing.component';
+import {ListSolicitationComponent} from './board-solicitation/list-solicitation/list-solicitation.component';
 
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
+  { path: 'servicing/:servicingId/solicitations/create', component: HomeComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'profile', component: ProfileComponent },

@@ -1,24 +1,137 @@
-<div id="app">
-	<nav class="navbar navbar-expand navbar-dark bg-primary" style="background-color: #e3f2fd;">
-		<a class="navbar-brand p-0" href="/">
-			<img src="/assets/img/logo1.jpg" width="200" height="50" alt="Alexandre">
-		</a>
-		<ul class="navbar-nav mr-auto" routerLinkActive="active">
-			<li class="nav-item"><a href="/home" class="nav-link" routerLink="home">Home </a></li>
-			<li class="nav-item" *ngIf="showAdminBoard"><a href="/admin" class="nav-link" routerLink="admin">Admin Board</a></li>
-			<li class="nav-item" *ngIf="showModeratorBoard"><a href="/mod" class="nav-link" routerLink="mod">Moderator Board</a></li>
-			<li class="nav-item"><a href="/user" class="nav-link" *ngIf="isLoggedIn" routerLink="user">User</a></li>
-		</ul>
-		<ul class="navbar-nav ml-auto" *ngIf="!isLoggedIn">
-			<li class="nav-item"><a href="/register" class="nav-link" routerLink="register">Sign Up</a></li>
-			<li class="nav-item"><a href="/login" class="nav-link" routerLink="login">Login</a></li>
-		</ul>
-		<ul class="navbar-nav ml-auto" *ngIf="isLoggedIn">
-			<li class="nav-item"><a href="/profile" class="nav-link" routerLink="profile">{{ username }}</a></li>
-			<li class="nav-item"><a href class="nav-link" (click)="logout()">LogOut</a></li>
-		</ul>
-	</nav>
-	<div class="container-fluid bg-light">
-		<router-outlet></router-outlet>
-	</div>
+<!--<div id="app">-->
+<!--	<nav class="navbar navbar-expand-sm navbar-dark bg-primary">-->
+<!--		<a class="navbar-brand p-0" href="/">-->
+<!--			<img src="/assets/img/logo1.jpg" width="200" height="50" alt="Alexandre">-->
+<!--		</a>-->
+<!--		<ul class="navbar-nav mr-auto" routerLinkActive="active">-->
+<!--			<li class="nav-item"><a href="/home" class="nav-link" routerLink="home">Home </a></li>-->
+<!--			<li class="nav-item" *ngIf="showAdminBoard"><a href="/admin" class="nav-link" routerLink="admin">Admin Board</a></li>-->
+<!--			<li class="nav-item" *ngIf="showModeratorBoard"><a href="/mod" class="nav-link" routerLink="mod">Moderator Board</a></li>-->
+<!--			<li class="nav-item"><a href="/user" class="nav-link" *ngIf="isLoggedIn" routerLink="user">User</a></li>-->
+<!--		</ul>-->
+<!--		<ul class="navbar-nav ml-auto" *ngIf="!isLoggedIn">-->
+<!--			<li class="nav-item"><a href="/register" class="nav-link" routerLink="register">Sign Up</a></li>-->
+<!--			<li class="nav-item"><a href="/login" class="nav-link" routerLink="login">Login</a></li>-->
+<!--		</ul>-->
+<!--		<ul class="navbar-nav ml-auto" *ngIf="isLoggedIn">-->
+<!--			<li class="nav-item"><a href="/profile" class="nav-link" routerLink="profile">{{ username }}</a></li>-->
+<!--			<li class="nav-item"><a href class="nav-link" (click)="logout()">LogOut</a></li>-->
+<!--		</ul>-->
+<!--	</nav>-->
+<!--	<div class="container-fluid bg-light">-->
+<!--		<router-outlet></router-outlet>-->
+<!--	</div>-->
+<!--</div>-->
+
+<header>
+  	<nav class="navbar navbar-expand-sm navbar-light">
+  		<div class="container">
+        <a class="navbar-brand" href="/">
+          <img src="/assets/img/apple-touch-icon.png" width="50" alt="Alexandre">
+        </a>
+
+        <button class="navbar-toggler" data-toggle="collapse" data-target="#nav-principal">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+      </div>
+
+      <div class="collapse navbar-collapse" id="nav-principal">
+  		<ul class="navbar-nav ml-auto" routerLinkActive="active">
+  			<li class="nav-item"><a href="/home" class="nav-link" routerLink="home">Home </a></li>
+  			<li class="nav-item" *ngIf="showAdminBoard"><a href="/admin" class="nav-link" routerLink="admin">Administrator</a></li>
+  			<li class="nav-item" *ngIf="showModeratorBoard"><a href="/mod" class="nav-link" routerLink="mod">Moderator</a></li>
+  			<li class="nav-item"><a href="/user" class="nav-link" *ngIf="isLoggedIn" routerLink="user">User</a></li>
+
+      </ul>
+  		<ul class="navbar-nav ml-auto" *ngIf="!isLoggedIn">
+  			<li class="nav-item"><a href="/register" class="btn btn-outline-light ml-4" routerLink="register">SignUp</a></li>
+  			<li class="nav-item"><a href="/login" class="btn btn-outline-light ml-4" routerLink="login">Login</a></li>
+  		</ul>
+  		<ul class="navbar-nav ml-auto" *ngIf="isLoggedIn">
+  			<li class="nav-item"><a href="/profile" class="nav-link" routerLink="profile">@{{ username }}</a></li>
+<!--  			<li class="nav-item"><a href class="nav-link" (click)="logout()">LogOut</a></li>-->
+  			<li class="nav-item"><a class="btn btn-outline-light ml-4" (click)="logout()">LogOut</a></li>
+  		</ul>
+      </div>
+  	</nav>
+</header>
+
+<!--<section id="home">-->
+<!--  &lt;!&ndash; Início secção home &ndash;&gt;-->
+<!--  <div class="container">-->
+<!--    <div class="row">-->
+<!--      <div class="col-md-6 d-flex">-->
+<!--        &lt;!&ndash; Textos da seção &ndash;&gt;-->
+<!--        <div class="align-self-center">-->
+<!--          <h1 class="display-4">Serviços Inovadores, de qualidade!</h1>-->
+<!--          <p>-->
+<!--            Usado por mais de 1 milhão de pessoas, o Finans é uma ferramenta online que vai facilitar-->
+<!--            sua vida financeira.-->
+<!--          </p>-->
+
+<!--          <form class="mt-4 mb-4">-->
+<!--            <div class="input-group input-group-lg">-->
+<!--              <input type="text" placeholder="Seu e-mail" class="form-control">-->
+<!--              <div class="input-group-append">-->
+<!--                <button type="button" class="btn btn-primary">Cadastre-se</button>-->
+<!--              </div>-->
+<!--            </div>-->
+<!--          </form>-->
+
+<!--          <p>Disponível para-->
+<!--            <a href="" class="btn btn-outline-light">-->
+<!--              <i class="fab fa-android fa-lg"></i>-->
+<!--            </a>-->
+<!--            <a href="" class="btn btn-outline-light">-->
+<!--              <i class="fab fa-apple"></i>-->
+<!--            </a>-->
+<!--          </p>-->
+
+<!--        </div>-->
+<!--      </div>-->
+<!--      &lt;!&ndash;/fim textos da secção &ndash;&gt;-->
+<!--      <div class="col-md-6 d-none d-md-block">-->
+<!--        <img src="/assets/img/capa-mulher.png" alt="capa1">-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</section>-->
+<div class="container-fluid bg-light">
+<!--  <a *ngIf="!(isAuthenticated.getUser() | async)?.isLoggedIn">Please log in to manage-->
+<!--    your Solicitation.</a>-->
+  <router-outlet></router-outlet>
 </div>
+
+<footer class="mt-4 mb-4">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 d-none d-md-block">
+        <p>
+          <a href="">Home</a>
+          <!--  <a *ngIf="!(isAuthenticated.getUser() | async)?.isLoggedIn">Please log in to manage-->
+          <!--    your Solicitation.</a>-->
+          <a href="">Login</a>
+          <a href="">LogOut</a>
+        </p>
+      </div>
+      <div class="col-md-4 d-flex justify-content-end">
+        <a href="#" class="btn btn-outline-dark">
+          <i class="fab fa-facebook fa-lg" aria-hidden="true"></i>
+        </a>
+
+        <a href="#" class="btn btn-outline-dark ml-2">
+          <i class="fab fa-twitter fa-lg" aria-hidden="true"></i>
+        </a>
+
+        <a href="#" class="btn btn-outline-dark ml-2">
+          <i class="fab fa-instagram fa-lg" aria-hidden="true"></i>
+        </a>
+
+        <a href="#" class="btn btn-outline-dark ml-2">
+          <i class="fab fa-youtube fa-lg" aria-hidden="true"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>

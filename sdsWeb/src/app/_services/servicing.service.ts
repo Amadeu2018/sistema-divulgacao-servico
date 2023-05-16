@@ -1,9 +1,10 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpEvent} from '@angular/common/http';
+import {HttpClient, HttpEvent, HttpParams} from '@angular/common/http';
 import {Observable, throwError} from 'rxjs';
 import {AppConstants} from '../common/app.constants';
 import {Servicing} from '../model/servicing.model';
 import {map, catchError} from 'rxjs/operators';
+import {ServicingPage} from '../model/servicingPage';
 
 @Injectable({
   providedIn: 'root'
@@ -23,9 +24,10 @@ export class ServicingService {
   //   return this.https.get<Servicing[]>(`${this.baseUrl}/services`);
   // }
 
-  findAll(): Observable<Servicing> {
-    const url = `${this.baseUrl}`;
-    return this.https.get(url);
+  findPageable(page, size): Observable<ServicingPage> {
+    console.log(page, size);
+    const params = new HttpParams().set('page', page).set('size', size);
+    return this.https.get<any>(`${this.baseUrl}?${params.toString()}`);
   }
 
   listAll(): Observable<Servicing[]> {
@@ -35,11 +37,6 @@ export class ServicingService {
       );
   }
 
-
-  // findById(id: string): Observable<any> {
-  //   const url = `${this.baseUrl}/${id}`;
-  //   return this.https.get(url);
-  // }
 
   findById(id: string): Observable<Servicing | null> {
     const url = `${this.baseUrl}/${id}`;
@@ -64,17 +61,6 @@ export class ServicingService {
       );
   }
 
-
-  // create(servicing: Servicing, httpOptions: any): Observable<HttpEvent<Servicing>> {
-  //   const url = `${this.baseUrl}`;
-  //   return this.https.post<Servicing>(url, servicing, httpOptions);
-  // }
-
-  // create(servicing: Servicing, httpOptions: any): Observable<Servicing> {
-  //   const url = `${this.baseUrl}`;
-  //   return this.https.post<Servicing>(url, servicing, httpOptions);
-  // }
-
   update(id: string, data: any): Observable<any> {
     data.price = +data.price;
     const url = `${this.baseUrl}/${id}`;
@@ -95,6 +81,12 @@ export class ServicingService {
         return throwError(err);
       })
     );
+  }
+
+  upload(servicing: Servicing, formData: FormData): Observable<any> {
+    return this.https.put(`${this.baseUrl}/${servicing.id}/img`, formData, {
+      responseType: 'blob',
+    });
   }
 
 

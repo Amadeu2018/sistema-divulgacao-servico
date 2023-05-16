@@ -1,8 +1,39 @@
-<!--<pre>{{ service | json }}</pre>-->
-<form>
-  <h1>ATUALIZAR SERVIÇOS</h1>
+<!--<mat-card style="text-align: center">-->
+<!--  <mat-card-header>-->
+<!--    <mat-icon>face</mat-icon>-->
+<!--    Contato-->
+<!--  </mat-card-header>-->
 
-<!--  <mat-form-field class="form">-->
+<!--  <img-->
+<!--    class="foto"-->
+<!--    mat-car-image-->
+<!--    src="data:image/jpg;base64,{{ services.photo }}"-->
+<!--  />-->
+
+<!--  <mat-card-content>-->
+<!--    <p>-->
+<!--      <strong>{{ services.name }}</strong> <br />-->
+<!--      <strong>{{ services.description }}</strong>-->
+<!--      <strong>{{ services.price }}</strong>-->
+<!--      <strong>{{ services.solicitations }}</strong>-->
+<!--    </p>-->
+<!--  </mat-card-content>-->
+
+<!--  <mat-card-actions>-->
+<!--    <button mat-raised-button color="primary" (click)="close()">Fechar</button>-->
+<!--  </mat-card-actions>-->
+<!--</mat-card>-->
+
+<!--&lt;!&ndash;<pre>{{ service | json }}</pre>&ndash;&gt;-->
+<mat-card style="text-align: center">
+  <mat-card-header>
+    <h1>ATUALIZAR SERVIÇOS</h1>
+  </mat-card-header>
+
+    <mat-card-content>
+<form>
+
+  <!--  <mat-form-field class="form">-->
 <!--    <mat-label>ID</mat-label>-->
 <!--    <input matInput [(ngModel)]="service.id" type="text" name="id">-->
 <!--  </mat-form-field>-->
@@ -32,10 +63,14 @@
 <!--    <textarea matInput [(ngModel)]="servicing.solicitations" type="text" name="solicitations"></textarea>-->
 <!--  </mat-form-field>-->
 
-  <div class="buttons">
-    <button (click)="updateService()" class="mat-elevation-z8" mat-stroked-button color="primary">ATUALIZAR</button>
-    <button (click)="cancel()" class="mat-elevation-z8" mat-stroked-button color="warn">CANCELAR</button>
-
-  </div>
 </form>
+    </mat-card-content>
+    <mat-card-actions>
+      <div class="buttons">
+        <button (click)="updateService()" class="mat-elevation-z8" mat-stroked-button color="primary">ATUALIZAR</button>
+        <!--    <button (click)="cancel()" class="mat-elevation-z8" mat-stroked-button color="warn">CANCELAR</button>-->
+        <button mat-raised-button color="primary" (click)="close()">Fechar</button>
+      </div>
+    </mat-card-actions>
+</mat-card>
 

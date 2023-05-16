@@ -1,34 +1,80 @@
-<form>
-  <h1>DELETAR CATEGORIA</h1>
+<mat-card style="text-align: center">
+  <mat-card-header>
+    <mat-icon>face</mat-icon>
+    <h4>DELETAR SERVIÇO</h4>
+  </mat-card-header>
 
-  <mat-form-field class="form">
-    <mat-label>Nome</mat-label>
-    <input matInput [(ngModel)]="servicing.name" type="text" name="name">
-  </mat-form-field>
+<!--  <img-->
+<!--    class="foto" alt="img"-->
+<!--    mat-car-image-->
+<!--    src="data:image/jpg;base64,{{ services.photo }}"-->
+<!--  />-->
 
-  <mat-form-field class="form">
-    <mat-label>Preço</mat-label>
-    <input matInput [(ngModel)]="servicing.price" type="text" name="price">
-  </mat-form-field>
+  <img class="foto" alt="img" mat-card-image [src]="imageData"/>
 
-  <mat-form-field class="form">
-    <mat-label>Descrição</mat-label>
-    <textarea matInput [(ngModel)]="servicing.description" type="text" name="description"></textarea>
-  </mat-form-field>
 
-<!--  <mat-form-field class="form">-->
-<!--    <mat-label>Imangem</mat-label>-->
-<!--    <textarea matInput [(ngModel)]="servicing.images" type="text" name="images"></textarea>-->
-<!--  </mat-form-field>-->
+  <mat-card-content>
+    <p>
+      <strong>{{ services.name }}</strong> <br />
+      <strong>{{ services.description }}</strong><br />
+      <strong>{{ services.price }}</strong><br />
+      <strong>{{ services.solicitations }}</strong>
+    </p>
+  </mat-card-content>
 
-<!--  <mat-form-field class="form">-->
-<!--    <mat-label>Solicitação</mat-label>-->
-<!--    <textarea matInput [(ngModel)]="servicing.solicitations" type="text" name="solicitations"></textarea>-->
-<!--  </mat-form-field>-->
+  <mat-card-actions>
+    <button (click)="delete()" class="mat-elevation-z8" mat-stroked-button color="primary">ELIMINAR</button>
 
-  <div class="buttons">
-    <button (click)="delete()" class="mat-elevation-z8" mat-stroked-button color="primary">DELETAR</button>
-    <button (click)="cancel()" class="mat-elevation-z8" mat-stroked-button color="warn">CANCELAR</button>
+    <button mat-raised-button color="primary" (click)="close()">Fechar</button>
+  </mat-card-actions>
+</mat-card>
 
-  </div>
-</form>
+
+<!--<mat-card style="text-align: center">-->
+<!--  <mat-card-header>-->
+<!--    <h1>DELETAR SERVIÇO</h1>-->
+<!--  </mat-card-header>-->
+
+<!--  <mat-card-content>-->
+<!--    <form>-->
+
+<!--      &lt;!&ndash;  <mat-form-field class="form">&ndash;&gt;-->
+<!--      &lt;!&ndash;    <mat-label>ID</mat-label>&ndash;&gt;-->
+<!--      &lt;!&ndash;    <input matInput [(ngModel)]="service.id" type="text" name="id">&ndash;&gt;-->
+<!--      &lt;!&ndash;  </mat-form-field>&ndash;&gt;-->
+
+<!--      <mat-form-field class="form">-->
+<!--        <mat-label>Nome</mat-label>-->
+<!--        <input matInput [(ngModel)]="servicing.name" type="text" name="name">-->
+<!--      </mat-form-field>-->
+
+<!--      <mat-form-field class="form">-->
+<!--        <mat-label>Preço</mat-label>-->
+<!--        <input matInput [(ngModel)]="servicing.price" type="text" name="price">-->
+<!--      </mat-form-field>-->
+
+<!--      <mat-form-field class="form">-->
+<!--        <mat-label>Descrição</mat-label>-->
+<!--        <textarea matInput [(ngModel)]="servicing.description" type="text" name="description"></textarea>-->
+<!--      </mat-form-field>-->
+
+<!--      &lt;!&ndash;  <mat-form-field class="form">&ndash;&gt;-->
+<!--      &lt;!&ndash;    <mat-label>Imangem</mat-label>&ndash;&gt;-->
+<!--      &lt;!&ndash;    <textarea matInput [(ngModel)]="servicing.images" type="text" name="images"></textarea>&ndash;&gt;-->
+<!--      &lt;!&ndash;  </mat-form-field>&ndash;&gt;-->
+
+<!--      &lt;!&ndash;  <mat-form-field class="form">&ndash;&gt;-->
+<!--      &lt;!&ndash;    <mat-label>Solicitação</mat-label>&ndash;&gt;-->
+<!--      &lt;!&ndash;    <textarea matInput [(ngModel)]="servicing.solicitations" type="text" name="solicitations"></textarea>&ndash;&gt;-->
+<!--      &lt;!&ndash;  </mat-form-field>&ndash;&gt;-->
+
+<!--    </form>-->
+<!--  </mat-card-content>-->
+<!--  <mat-card-actions>-->
+<!--    <div class="buttons">-->
+<!--      <button (click)="delete()" class="mat-elevation-z8" mat-stroked-button color="primary">ELIMINAR</button>-->
+<!--      &lt;!&ndash;    <button (click)="cancel()" class="mat-elevation-z8" mat-stroked-button color="warn">CANCELAR</button>&ndash;&gt;-->
+<!--      <button mat-raised-button color="primary" (click)="close()">Fechar</button>-->
+<!--    </div>-->
+<!--  </mat-card-actions>-->
+<!--</mat-card>-->

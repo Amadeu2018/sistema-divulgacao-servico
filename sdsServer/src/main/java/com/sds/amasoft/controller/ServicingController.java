@@ -1,7 +1,10 @@
 package com.sds.amasoft.controller;
 
 import com.sds.amasoft.model.Servicing;
+import com.sds.amasoft.model.Solicitation;
+import com.sds.amasoft.model.Status;
 import com.sds.amasoft.service.ServicingService;
+import com.sds.amasoft.service.SolicitationServiceImpl;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
@@ -11,6 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.annotation.PutMapping;
 
+import javax.servlet.http.Part;
 import javax.validation.Valid;
 
 @RestController
@@ -20,6 +24,7 @@ import javax.validation.Valid;
 public class ServicingController {
 
     private final ServicingService servicingService;
+    private final SolicitationServiceImpl solicitationServiceImpl;
 
     @GetMapping("/all")
     public ResponseEntity<?> getContent() {
@@ -47,6 +52,19 @@ public class ServicingController {
     public ResponseEntity<Servicing> create(@RequestBody @Valid Servicing servicing) {
         Servicing createdServicing = servicingService.create(servicing);
         return ResponseEntity.status(HttpStatus.CREATED).body(createdServicing);
+    }
+
+    @PostMapping("/servicing/{servicingId}/solicitations")
+    public ResponseEntity<Solicitation> createSolicitation(@PathVariable Long servicingId, @RequestBody Solicitation solicitation) {
+        Servicing servicing = servicingService.findById(servicingId);
+        if (servicing == null) {
+            return ResponseEntity.notFound().build();
+        }
+
+        solicitation.setService(servicing);
+        solicitation.setStatus(Status.PENDING);
+        Solicitation newSolicitation = solicitationServiceImpl.create(solicitation);
+        return ResponseEntity.ok(newSolicitation);
     }
 
 
@@ -81,6 +99,12 @@ public class ServicingController {
     public ResponseEntity<Servicing> update(@PathVariable Long id, @RequestBody @Valid Servicing servicing) {
         Servicing updatedServicing = servicingService.update(id, servicing);
         return ResponseEntity.ok(updatedServicing);
+    }
+
+    @PutMapping("{id}/img")
+    public ResponseEntity<byte[]> addPhoto(@PathVariable Long id, @RequestParam("photo") Part arquivo) {
+        byte[] updateImgServing = servicingService.addImg(id, arquivo);
+        return ResponseEntity.ok(updateImgServing);
     }
 
 

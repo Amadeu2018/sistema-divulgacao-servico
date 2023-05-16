@@ -1,26 +1,32 @@
-form {
-  text-align: center;
-  width: 70%;
-  margin: 2rem auto 0 auto;
-}
+/*form {*/
+/*  text-align: center;*/
+/*  width: 70%;*/
+/*  margin: 2rem auto 0 auto;*/
+/*}*/
 
-h1 {
-  font-size: 2rem;
-  font-weight: 500;
-  margin-bottom: 3rem;
-}
+/*h1 {*/
+/*  font-size: 2rem;*/
+/*  font-weight: 500;*/
+/*  margin-bottom: 3rem;*/
+/*}*/
 
-.form {
-  width: 100%;
-}
+/*.form {*/
+/*  width: 100%;*/
+/*}*/
 
-.buttons {
-  width: 100%;
-  text-align: start;
-}
+/*.buttons {*/
+/*  width: 100%;*/
+/*  text-align: start;*/
+/*}*/
 
-button {
-  margin-right: 5rem;
-  padding-right: 2rem;
-  padding-left: 2rem;
+/*button {*/
+/*  margin-right: 5rem;*/
+/*  padding-right: 2rem;*/
+/*  padding-left: 2rem;*/
+/*}*/
+
+
+.foto {
+  width: 200px;
+  height: 200px;
 }

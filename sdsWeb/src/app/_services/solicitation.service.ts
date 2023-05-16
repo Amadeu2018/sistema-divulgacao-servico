@@ -20,4 +20,12 @@ export class SolicitationService {
     return this.https.get<Page<Solicitation>>(`${this.baseUrl}`);
   }
 
+  createSolicitation(servicingId: number, solicitation: Solicitation): Observable<Solicitation> {
+    return this.https.post<Solicitation>(`${this.baseUrl}/servicing/${servicingId}/solicitations`, solicitation);
+  }
+
+  soliciting(solicitation: Solicitation): Observable<any> {
+    return this.https.patch(`${this.baseUrl}/${solicitation.id}/solicitations`, null);
+  }
+
 }

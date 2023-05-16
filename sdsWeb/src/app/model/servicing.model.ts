@@ -4,6 +4,7 @@ export class Servicing {
   description?: string;
   price?: any;
   images?: any;
+  photo?: any;
   solicitations?: any;
   // dateRegistration?: string;
 
@@ -13,6 +14,7 @@ export class Servicing {
     this.description = obj?.description || null;
     this.price = obj?.price || null;
     this.images = obj?.images || null;
+    this.photo = obj?.photo || null;
     this.solicitations = obj?.solicitations || null;
     // this.dateRegistration = obj?.dateRegistration ? new Date(obj.dateRegistration).toISOString() : null;
   }

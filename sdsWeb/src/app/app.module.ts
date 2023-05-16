@@ -2,7 +2,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
-import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
@@ -36,6 +35,13 @@ import { ListSolicitationComponent } from './board-solicitation/list-solicitatio
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatSortModule} from '@angular/material/sort';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import {ServicingService} from './_services/servicing.service';
+import {SolicitationService} from './_services/solicitation.service';
+
 
 
 @NgModule({
@@ -58,7 +64,6 @@ import { MatExpansionModule } from '@angular/material/expansion';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
     MatTableModule,
@@ -76,10 +81,15 @@ import { MatExpansionModule } from '@angular/material/expansion';
     MatNativeDateModule,
     MatPaginatorModule,
     MatSortModule,
-    MatExpansionModule
+    MatExpansionModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatButtonModule,
+    MatTabsModule,
+    MatSnackBarModule
   ],
   exports: [EditServicingComponent],
-  providers: [authInterceptorProviders, MatDatepickerModule, MatNativeDateModule],
+  providers: [authInterceptorProviders, MatDatepickerModule, MatNativeDateModule, ServicingService, SolicitationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

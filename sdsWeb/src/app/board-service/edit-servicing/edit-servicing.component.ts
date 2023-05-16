@@ -1,5 +1,6 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 import {ServicingService} from '../../_services/servicing.service';
 import {Servicing} from '../../model/servicing.model';
@@ -21,23 +22,27 @@ export class EditServicingComponent implements OnInit {
   };
 
   // tslint:disable-next-line:max-line-length
-  constructor(private service: ServicingService, private router: Router, private activatedRoute: ActivatedRoute) {
+  constructor(private service: ServicingService,
+              private router: Router,
+              private activatedRoute: ActivatedRoute,
+              public dialogRef: MatDialogRef<EditServicingComponent>,
+              @Inject(MAT_DIALOG_DATA) public services: Servicing) {
   }
 
-  // constructor(, private fb: FormBuilder, @Inject(MAT_DIALOG_DATA) public data: any, public dialog: MatDialog) { }
-
   ngOnInit(): void {
-    const id = this.activatedRoute.snapshot.paramMap.get('id');
-    this.service.findById(id).subscribe(servicing => {
-      if (servicing) {
-        this.servicing = servicing;
-        console.log(servicing);
-      }
-    });
+    this.servicing = {
+      id: this.services.id,
+      name: this.services.name,
+      description: this.services.description,
+      price: this.services.price,
+    };
+  }
+  close(): void {
+    this.dialogRef.close();
   }
 
   updateService(): void {
-    this.service.update(this.servicing.id, this.servicing).subscribe(
+    this.service.update(this.services.id, this.servicing).subscribe(
       (response) => {
         console.log(response);
         this.router.navigate(['/services']);
@@ -46,10 +51,6 @@ export class EditServicingComponent implements OnInit {
         console.log(error);
       }
     );
-  }
-
-  cancel(): void {
-    this.router.navigate(['/services']);
   }
 
 }

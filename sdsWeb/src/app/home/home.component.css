@@ -1,0 +1,111 @@
+/*:host {*/
+/*  display: block;*/
+/*  padding: 0 20px;*/
+/*}*/
+
+/*table {*/
+/*  margin-top: 10px;*/
+/*  border-collapse: collapse;*/
+/*}*/
+/*th {*/
+/*  text-align: left;*/
+/*  border-bottom: 2px solid #ddd;*/
+/*  padding: 8px;*/
+/*  background-color: #f2f2f2;*/
+/*}*/
+
+/*td {*/
+/*  border-top: 1px solid #ddd;*/
+/*  padding: 8px;*/
+/*}*/
+
+
+/*.content {*/
+/*  width: 90%;*/
+/*  margin: 1.4rem auto auto auto;*/
+/*}*/
+
+/*.title {*/
+/*  text-align: center;*/
+/*  margin-bottom: 3rem;*/
+/*}*/
+
+/*.title h1 {*/
+/*  font-size: 2rem;*/
+/*  color: rgb(12, 9, 9);*/
+/*  font-weight: 500;*/
+/*}*/
+
+/*button {*/
+/*  margin-bottom: .8rem;*/
+/*}*/
+
+/*.buttons {*/
+/*  width: 100%;*/
+/*  text-align: start;*/
+/*}*/
+
+/*button {*/
+/*  margin-right: 5rem;*/
+/*  padding-right: 2rem;*/
+/*  padding-left: 2rem;*/
+/*}*/
+
+/*.table*/
+/*{*/
+/*  width: 100%;*/
+/*}*/
+
+/*.livros {*/
+/*  color: rgb(31, 175, 175);*/
+/*  margin-left: .6rem;*/
+/*}*/
+
+/*.edit {*/
+/*  color: rgb(153, 80, 28);*/
+/*}*/
+
+/*.delete {*/
+/*  color: #e02525;*/
+/*  margin-left: .5rem;*/
+/*}*/
+
+/*!* Estilo das células do cabeçalho *!*/
+/*th.mat-header-cell {*/
+/*  text-align: center;*/
+/*  font-weight: bold;*/
+/*}*/
+
+/*td.mat-cell {*/
+/*  text-align: center;*/
+/*}*/
+
+/*.button-cell {*/
+/*  text-align: center;*/
+/*  vertical-align: middle;*/
+/*}*/
+
+/*.button-cell button.btn {*/
+/*  margin: auto;*/
+/*  display: block;*/
+/*  width: 100%;*/
+/*}*/
+
+/*!*td.mat-cell {*!*/
+/*!*  text-align: center;*!*/
+/*!*  vertical-align: middle; !* alinha verticalmente *!*!*/
+/*!*}*!*/
+
+/*!*button.btn {*!*/
+/*!*  margin: auto; !* centraliza horizontalmente *!*!*/
+/*!*  display: block; !* força o botão a ter largura máxima *!*!*/
+/*!*  width: 100%; !* largura máxima *!*!*/
+/*!*}*!*/
+
+
+.full-width {
+  width: 100%;
+}
+.half-width {
+  width: 50%;
+}
