@@ -1,0 +1,54 @@
+<!--<p>delete-user works!</p>-->
+<mat-card style="text-align: center">
+  <mat-card-header>
+    <h1>ATUALIZAR USUÁRIO</h1>
+  </mat-card-header>
+
+  <mat-card-content>
+    <form>
+
+      <mat-form-field class="form">
+        <mat-label>Nome</mat-label>
+        <input matInput [(ngModel)]="user.displayName" type="text" name="displayName">
+      </mat-form-field>
+
+      <mat-form-field class="form">
+        <mat-label>E-mail</mat-label>
+        <input matInput [(ngModel)]="user.email" type="text" name="email">
+      </mat-form-field>
+
+      <mat-form-field class="form">
+        <mat-label>Telefone</mat-label>
+        <input matInput [(ngModel)]="user.phone" type="text" name="phone">
+      </mat-form-field>
+
+<!--      <mat-form-field class="form">-->
+<!--        <mat-label>Perfil</mat-label>-->
+<!--        <mat-select [(ngModel)]="selectedRole" name="role">-->
+<!--          <mat-option *ngFor="let option of roleOptions" [value]="option.value">{{ option.label }}</mat-option>-->
+<!--        </mat-select>-->
+<!--      </mat-form-field>-->
+
+
+            <mat-form-field class="form">
+              <mat-label>Perfil</mat-label>
+              <input matInput [(ngModel)]="selectedRole" type="text" name="role" disabled>
+            </mat-form-field>
+
+      <!--      <mat-form-field class="form">-->
+      <!--        <mat-label>Perfil</mat-label>-->
+      <!--        <mat-select disabled [(ngModel)]="user.role" name="role">-->
+      <!--          <mat-option [value]="user.role">{{ getRoleName(user.role) }}</mat-option>-->
+      <!--        </mat-select>-->
+      <!--      </mat-form-field>-->
+
+
+    </form>
+  </mat-card-content>
+  <mat-card-actions>
+    <div class="buttons">
+      <button class="mat-elevation-z8" mat-stroked-button color="primary">ATUALIZAR</button>
+      <button mat-raised-button color="primary" (click)="close()">Fechar</button>
+    </div>
+  </mat-card-actions>
+</mat-card>

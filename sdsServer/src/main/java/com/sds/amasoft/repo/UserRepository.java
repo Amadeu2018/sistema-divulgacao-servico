@@ -7,6 +7,8 @@ import org.springframework.stereotype.Repository;
 
 import com.sds.amasoft.model.User;
 
+import java.util.Optional;
+
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
 
@@ -16,4 +18,5 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     Page<User> findAll(Pageable pageable);
 
+    Optional<User> findById(User id);
 }

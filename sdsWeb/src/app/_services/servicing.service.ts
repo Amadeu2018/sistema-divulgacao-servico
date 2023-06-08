@@ -1,16 +1,25 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpEvent, HttpParams} from '@angular/common/http';
+import {HttpClient, HttpEvent, HttpHeaders, HttpParams} from '@angular/common/http';
 import {Observable, throwError} from 'rxjs';
 import {AppConstants} from '../common/app.constants';
 import {Servicing} from '../model/servicing.model';
 import {map, catchError} from 'rxjs/operators';
 import {ServicingPage} from '../model/servicingPage';
+import {Solicitation} from '../model/solicitation.model';
+
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class ServicingService {
+  static  httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json'
+    })
+  };
 
+  httpOptions = ServicingService.httpOptions;
   private baseUrl = AppConstants.SERVICE_URL;
 
   constructor(private https: HttpClient) {
@@ -101,5 +110,17 @@ export class ServicingService {
   //       .filter((item: Servicing) => JSON.stringify(item).toLowerCase().includes(q)))
   //   );
   // }
+
+  // soliciting(servicingId: any, solicitation: Solicitation): Observable<any> {
+  //   solicitation.date = new Date(); // Define a data atual
+  //   solicitation.hour = new Date().toLocaleTimeString(); // Define a hora atual
+  //   solicitation.status = 'solicitado'; // Define o status padrão como 'solicitado'
+  //   solicitation.service = servicingId; // Define o serviço com o ID passado como parâmetro
+  //   solicitation.user = 'usuário logado'; // Substitua 'usuário logado' pelo usuário atualmente logado
+  //
+  //   return this.https.post(`${this.baseUrl}/service/${servicingId}/solicitations`, solicitation, ServicingService.httpOptions);
+  // }
+
+
 
 }

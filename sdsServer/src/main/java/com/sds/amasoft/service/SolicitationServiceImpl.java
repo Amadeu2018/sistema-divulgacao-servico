@@ -13,7 +13,10 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -22,6 +25,8 @@ public class SolicitationServiceImpl implements SolicitationService {
     private final Utils utils;
 
     private final SolicitationRepository repository;
+    private final ServicingService servicingService;
+    private final UserServiceImpl userService;
 
 
     public Page<Solicitation> listAll(Pageable pageable) {
@@ -63,6 +68,60 @@ public class SolicitationServiceImpl implements SolicitationService {
         return repository.findByServiceAndStatus(service, status, pageable);
     }
 
+    @Transactional
+    public Solicitation requestService(Long userId, Long serviceId) {
+        // Verificar se já existe uma solicitação para este serviço pelo usuário
+        if (repository.existsByUser_IdAndService_Id(userId, serviceId)) {
+            // Já existe uma solicitação
+            return null;
+        } else {
+            // Criar uma nova solicitação
+            Solicitation solicitation = new Solicitation();
+            solicitation.setDate(LocalDate.now());
+            solicitation.setHour(LocalTime.now());
+            solicitation.setStatus(Status.SOLICITED); // Definir o status desejado
+
+            // Buscar e definir o usuário
+            Optional<User> userOptional = userService.findUserById(userId);
+            if (userOptional.isPresent()) {
+                User user = userOptional.get();
+                solicitation.setUser(user);
+            } else {
+                // Tratar o caso em que o usuário não é encontrado
+                // Exemplo: lançar uma exceção ou retornar uma resposta de erro
+                // Aqui, estou lançando uma exceção ResourceNotFoundException como exemplo:
+                throw new ResourceNotFoundException("User not found with id " + userId);
+            }
+
+            // Buscar e definir o serviço
+            Servicing service = servicingService.findById(serviceId);
+            solicitation.setService(service);
+
+            return repository.save(solicitation);
+        }
+    }
+
+
+
+//    public Solicitation createSolicitation(Long serviceId, Long userId, LocalDate date, LocalTime time) {
+//        Servicing service = servicingService.findById(serviceId);
+//        Optional<User> userOptional = userService.findUserById(userId);
+//
+//        if (userOptional.isPresent()) {
+//            User user = userOptional.get();
+//
+//            Solicitation solicitation = new Solicitation();
+//            solicitation.setService(service);
+//            solicitation.setUser(user);
+//            solicitation.setDate(date);
+//            solicitation.setHour(time);
+//            solicitation.setStatus(Status.PENDING);
+//
+//            return repository.save(solicitation);
+//        } else {
+//            throw new IllegalArgumentException("User not found");
+//        }
+//    }
 
     @Override
     public Solicitation create(Solicitation solicitation) {

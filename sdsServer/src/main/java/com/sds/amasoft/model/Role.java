@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -38,7 +39,8 @@ public class Role implements Serializable {
 	private String name;
 
 	// bi-directional many-to-many association to User
-	@JsonBackReference
+//	@JsonBackReference
+    @JsonIgnore
     @ManyToMany(mappedBy = "roles")
 	private Set<User> users;
 

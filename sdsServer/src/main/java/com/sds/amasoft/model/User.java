@@ -5,7 +5,9 @@ import java.util.Date;
 import java.util.Set;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
@@ -37,6 +39,8 @@ public class User implements Serializable {
 	@Column(name = "PROVIDER_USER_ID")
 	private String providerUserId;
 
+    @Column(name = "EMAIL")
+    @NotEmpty(message = "The email cannot be empty")
 	private String email;
 
     private String phone;
@@ -63,8 +67,8 @@ public class User implements Serializable {
 //    private List<Servicing> servicings;
 
 	// bi-directional many-to-many association to Role
-//	@JsonIgnore
-    @JsonManagedReference
+	@JsonIgnore
+//    @JsonManagedReference
 	@ManyToMany
 	@JoinTable(name = "user_role", joinColumns = { @JoinColumn(name = "USER_ID") }, inverseJoinColumns = { @JoinColumn(name = "ROLE_ID") })
 	private Set<Role> roles;

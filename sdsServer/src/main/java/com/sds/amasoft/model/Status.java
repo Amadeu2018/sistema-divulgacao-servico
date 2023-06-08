@@ -1,5 +1,6 @@
 package com.sds.amasoft.model;
 
 public enum Status {
-    PENDING, FINALIZED, CANCELLED
+    SOLICIT, SOLICITED
+//    Solicitated
 }

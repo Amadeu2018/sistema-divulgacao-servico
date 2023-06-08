@@ -53,8 +53,6 @@ public class Solicitation implements Serializable {
     @Enumerated(EnumType.STRING)
     private Status status;
 
-    @NotNull
-    @NotEmpty(message = "The username  of this service cannot be empty")
     //@Schema(description = "This is the Anime´s name", example = "Tensei Shittara Slime Datta Ken", required = true)
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "USER_ID", nullable = false)

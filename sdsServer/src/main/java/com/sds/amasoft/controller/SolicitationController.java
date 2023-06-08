@@ -1,9 +1,14 @@
 package com.sds.amasoft.controller;
 
+import com.sds.amasoft.dto.SolicitationRequest;
+import com.sds.amasoft.model.Servicing;
 import com.sds.amasoft.model.Solicitation;
 import com.sds.amasoft.model.Status;
 import com.sds.amasoft.model.User;
+import com.sds.amasoft.repo.SolicitationRepository;
+import com.sds.amasoft.service.ServicingService;
 import com.sds.amasoft.service.SolicitationServiceImpl;
+import com.sds.amasoft.service.UserServiceImpl;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
@@ -13,10 +18,12 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/solicitations")
@@ -25,6 +32,11 @@ import java.util.List;
 public class SolicitationController {
 
     private final SolicitationServiceImpl solicitationServiceImpl;
+    private final SolicitationRepository repository;
+
+    private final ServicingService servicingService;
+    private final UserServiceImpl userService;
+
 
     @GetMapping("/all")
     public ResponseEntity<?> getContent() {
@@ -51,35 +63,6 @@ public class SolicitationController {
         Solicitation solicitation = solicitationServiceImpl.findById(id);
         return ResponseEntity.ok(solicitation);
     }
-
-//    @GetMapping
-//    public ResponseEntity<List<Solicitation>> getAll() {
-//        List<Solicitation> solicitations = solicitationServiceImpl.findAll();
-//        return ResponseEntity.ok(solicitations);
-//    }
-
-//    @PostMapping
-//    public ResponseEntity<Solicitation> create(@RequestBody Solicitation solicitation) {
-//        try {
-//            // Converte a string para LocalTime usando um formatador adequado
-//            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
-//            LocalTime time = LocalTime.parse(solicitation.getHour(), formatter);
-//            solicitation.setHour(time);
-//
-//            Solicitation createdSolicitation = solicitationServiceImpl.create(solicitation);
-//            return ResponseEntity.status(HttpStatus.CREATED).body(createdSolicitation);
-//        } catch (DateTimeParseException e) {
-//            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
-//        }
-//    }
-
-
-
-//    @PostMapping
-//    public ResponseEntity<Solicitation> create(@RequestBody Solicitation solicitation) {
-//        Solicitation createdSolicitation = solicitationServiceImpl.create(solicitation);
-//        return ResponseEntity.status(HttpStatus.CREATED).body(createdSolicitation);
-//    }
 
     @PutMapping("/{id}")
     public ResponseEntity<Solicitation> update(@PathVariable Long id, @RequestBody Solicitation solicitation) {
@@ -111,6 +94,18 @@ public class SolicitationController {
     public ResponseEntity<Page<Solicitation>> getByServiceAndStatus(@PathVariable Long serviceId, @PathVariable Status status, Pageable pageable) {
         Page<Solicitation> solicitations = solicitationServiceImpl.findByServiceAndStatus(serviceId, status, pageable);
         return ResponseEntity.ok(solicitations);
+    }
+
+    @PostMapping("/request")
+    public ResponseEntity<String> requestService(@RequestParam("userId") Long userId, @RequestParam("serviceId") Long serviceId) {
+        Solicitation solicitation = solicitationServiceImpl.requestService(userId, serviceId);
+        if (solicitation != null) {
+            // A solicitação foi realizada com sucesso
+            return ResponseEntity.ok("A sua solicitação foi recebida com sucesso, ligaremos para você brevemente!");
+        } else {
+            // Já existe uma solicitação para este serviço pelo usuário
+            return ResponseEntity.badRequest().body("Você já fez uma solicitação para este serviço");
+        }
     }
 
 
@@ -148,5 +143,6 @@ public class SolicitationController {
 //        solicitationService.update(solicitation);
 //        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 //    }
+
 
 }

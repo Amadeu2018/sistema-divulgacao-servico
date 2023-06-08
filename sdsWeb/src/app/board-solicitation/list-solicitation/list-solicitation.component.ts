@@ -4,6 +4,7 @@ import {SolicitationService} from '../../_services/solicitation.service';
 import {Page} from '../../model/page.model';
 import {MatTableDataSource} from '@angular/material/table';
 import {MatSort} from '@angular/material/sort';
+import {TokenStorageService} from '../../_services/token-storage.service';
 
 @Component({
   selector: 'app-list-solicitation',
@@ -28,7 +29,8 @@ export class ListSolicitationComponent implements OnInit, AfterViewInit {
   displayedColumns: string[] = ['id', 'date', 'hour', 'status', 'user', 'service', 'acoes'];
   dataSource = new MatTableDataSource<any>();
   @ViewChild(MatSort) sort: MatSort;
-  constructor(private service: SolicitationService) { }
+  constructor(private service: SolicitationService,
+              private tokenStorageService: TokenStorageService) { }
 
   ngOnInit(): void {
     this.listAll();
@@ -36,9 +38,15 @@ export class ListSolicitationComponent implements OnInit, AfterViewInit {
   listAll(): void {
     const page = 0; // valor padrão para a página
     const size = 20; // valor padrão para o tamanho da página
+    const solicitations: Solicitation = {
+      // serviceId: row.service.id, // Preencha com o valor correto para o ID do serviço
+      userId: this.tokenStorageService.getUser().displayName, // Preencha com o ID do usuário, se necessário
+      // date: new Date().toISOString().split('T')[0], // Obtém a data atual no formato 'yyyy-MM-dd'
+      // time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) // Obtém a hora atual no formato 'HH:mm'
+    };
     this.service.listAll(page, size).subscribe({
       next: (pageNumber: Page<Solicitation>) => {
-        console.log(pageNumber);
+        console.log(pageNumber.content);
         this.dataSource.data = pageNumber.content;
         this.dataSource.sort = this.sort;
       },

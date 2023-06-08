@@ -1,3 +1,5 @@
+import {Solicitation} from './solicitation.model';
+
 export class Servicing {
   id?: any;
   name?: string;
@@ -5,7 +7,12 @@ export class Servicing {
   price?: any;
   images?: any;
   photo?: any;
-  solicitations?: any;
+  solicitations?: any[];
+  solicitationStatus?: Solicitation;
+  buttonProperties?: {
+    color: string;
+    text: string;
+  };
   // dateRegistration?: string;
 
   constructor(obj?: any) {
@@ -16,6 +23,7 @@ export class Servicing {
     this.images = obj?.images || null;
     this.photo = obj?.photo || null;
     this.solicitations = obj?.solicitations || null;
-    // this.dateRegistration = obj?.dateRegistration ? new Date(obj.dateRegistration).toISOString() : null;
+    this.solicitationStatus = obj?.solicitationStatus || { status: null }; // Adicione esta linha
   }
+
 }

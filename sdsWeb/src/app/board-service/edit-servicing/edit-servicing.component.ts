@@ -12,14 +12,15 @@ import {Servicing} from '../../model/servicing.model';
 })
 export class EditServicingComponent implements OnInit {
 
-  servicing: Servicing = {
-    id: '',
-    name: '',
-    description: '',
-    price: '',
-    // images: '',
-    // solicitations: '',
-  };
+  // servicing: Servicing = {
+  //   id: '',
+  //   name: '',
+  //   description: '',
+  //   price: '',
+  //   // images: '',
+  //   // solicitations: '',
+  // };
+  servicing: Servicing;
 
   // tslint:disable-next-line:max-line-length
   constructor(private service: ServicingService,

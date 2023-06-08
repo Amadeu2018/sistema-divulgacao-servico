@@ -29,10 +29,9 @@ import com.sds.amasoft.repo.RoleRepository;
 import com.sds.amasoft.repo.UserRepository;
 import com.sds.amasoft.util.GeneralUtils;
 
-/**
- * @author Chinna
- * @since 26/3/18
- */
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+
 @Service
 public class UserServiceImpl implements UserService {
 
@@ -120,6 +119,11 @@ public class UserServiceImpl implements UserService {
 		return userRepository.findById(id);
 	}
 
+    public Optional<User> findUserById(@NotNull @NotEmpty User id) {
+        return userRepository.findById(id);
+    }
+
+
     public Page<User> findAll(Pageable pageable) {
         return userRepository.findAll(pageable);
     }
@@ -132,8 +136,16 @@ public class UserServiceImpl implements UserService {
         userRepository.deleteById(id);
     }
 
+    @Override
+    @Transactional
+    public User updateUser(User user) {
+        return userRepository.save(user);
+    }
+
+
     @Transactional
     public void update(User user) {
         userRepository.save(user);
     }
+
 }

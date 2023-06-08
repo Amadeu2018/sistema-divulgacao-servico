@@ -23,4 +23,6 @@ public interface SolicitationRepository extends JpaRepository<Solicitation, Long
     Page<Solicitation> findByUser(User user, Pageable pageable);
 
     Page<Solicitation> findByServiceAndStatus(Servicing service, Status status, Pageable pageable);
+
+    boolean existsByUser_IdAndService_Id(Long userId, Long serviceId);
 }

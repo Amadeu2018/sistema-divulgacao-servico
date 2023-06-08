@@ -11,10 +11,6 @@ import com.sds.amasoft.dto.LocalUser;
 import com.sds.amasoft.dto.SignUpRequest;
 import com.sds.amasoft.model.User;
 
-/**
- * @author Chinna
- * @since 26/3/18
- */
 public interface UserService {
 
 	public User registerNewUser(SignUpRequest signUpRequest) throws UserAlreadyExistAuthenticationException;
@@ -24,4 +20,7 @@ public interface UserService {
 	Optional<User> findUserById(Long id);
 
 	LocalUser processUserRegistration(String registrationId, Map<String, Object> attributes, OidcIdToken idToken, OidcUserInfo userInfo);
+
+    User updateUser(User user);
+
 }

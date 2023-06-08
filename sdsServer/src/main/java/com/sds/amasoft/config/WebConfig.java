@@ -18,10 +18,32 @@ public class WebConfig implements WebMvcConfigurer {
 
 	private final long MAX_AGE_SECS = 3600;
 
-	@Override
-	public void addCorsMappings(CorsRegistry registry) {
-		registry.addMapping("/**").allowedOrigins("*").allowedMethods("HEAD", "OPTIONS", "GET", "POST", "PUT", "PATCH", "DELETE").maxAge(MAX_AGE_SECS);
-	}
+    @Override
+    public void addCorsMappings(CorsRegistry registry) {
+        registry.addMapping("/**")
+            .allowedOrigins("*")
+            .allowedMethods("HEAD", "OPTIONS", "GET", "POST", "PUT", "PATCH", "DELETE")
+            .maxAge(MAX_AGE_SECS);
+
+        registry.addMapping("/api/services/**") // Endpoint específico
+            .allowedOrigins("http://localhost:4200") // Origem permitida
+            .allowedMethods("POST") // Métodos permitidos
+            .maxAge(MAX_AGE_SECS);
+
+//        registry.addMapping("/api/solicitations/**") // Endpoint específico
+//            .allowedOrigins("http://localhost:4200") // Origem permitida
+//            .allowedMethods("POST") // Métodos permitidos
+//            .maxAge(MAX_AGE_SECS);
+    }
+
+//	@Override
+//	public void addCorsMappings(CorsRegistry registry) {
+//		registry.addMapping("/**").allowedOrigins("*").allowedMethods("HEAD", "OPTIONS", "GET", "POST", "PUT", "PATCH", "DELETE").maxAge(MAX_AGE_SECS);
+//        registry.addMapping("/api/**")
+//            .allowedOrigins("http://localhost:4200") // Adicione essa linha
+//            .allowedMethods("GET", "POST", "PUT", "DELETE")
+//            .allowedHeaders("*");
+//	}
 
 	@Bean
 	public MessageSource messageSource() {

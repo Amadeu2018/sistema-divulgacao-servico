@@ -3,8 +3,10 @@ package com.sds.amasoft.controller;
 import com.sds.amasoft.model.Servicing;
 import com.sds.amasoft.model.Solicitation;
 import com.sds.amasoft.model.Status;
+import com.sds.amasoft.model.User;
 import com.sds.amasoft.service.ServicingService;
 import com.sds.amasoft.service.SolicitationServiceImpl;
+import com.sds.amasoft.service.UserServiceImpl;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
@@ -16,6 +18,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 
 import javax.servlet.http.Part;
 import javax.validation.Valid;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/services")
@@ -25,6 +28,8 @@ public class ServicingController {
 
     private final ServicingService servicingService;
     private final SolicitationServiceImpl solicitationServiceImpl;
+
+    private final UserServiceImpl userService;
 
     @GetMapping("/all")
     public ResponseEntity<?> getContent() {
@@ -54,30 +59,6 @@ public class ServicingController {
         return ResponseEntity.status(HttpStatus.CREATED).body(createdServicing);
     }
 
-    @PostMapping("/servicing/{servicingId}/solicitations")
-    public ResponseEntity<Solicitation> createSolicitation(@PathVariable Long servicingId, @RequestBody Solicitation solicitation) {
-        Servicing servicing = servicingService.findById(servicingId);
-        if (servicing == null) {
-            return ResponseEntity.notFound().build();
-        }
-
-        solicitation.setService(servicing);
-        solicitation.setStatus(Status.PENDING);
-        Solicitation newSolicitation = solicitationServiceImpl.create(solicitation);
-        return ResponseEntity.ok(newSolicitation);
-    }
-
-
-//    @PostMapping
-//    public ResponseEntity<Servicing> save(@RequestBody @Valid Servicing servicing) {
-//        Servicing createdServicing = servicingService.save(servicing);
-//        return ResponseEntity.status(HttpStatus.CREATED).body(createdServicing);
-//    }
-
-//    @PostMapping(consumes = "application/json")
-//    public ResponseEntity<Servicing> save(@RequestBody @Valid Servicing servicing) {
-//        return ResponseEntity.ok(servicingService.save(servicing));
-//    }
 
     @DeleteMapping(path = "/admin/{id}")
 //    @ApiResponses(value = {

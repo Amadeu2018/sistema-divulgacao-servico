@@ -41,6 +41,9 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import {ServicingService} from './_services/servicing.service';
 import {SolicitationService} from './_services/solicitation.service';
+import { ListUsersComponent } from './board-user/list-users/list-users.component';
+import { EditUserComponent } from './board-user/edit-user/edit-user.component';
+import { DeleteUserComponent } from './board-user/delete-user/delete-user.component';
 
 
 
@@ -59,6 +62,9 @@ import {SolicitationService} from './_services/solicitation.service';
     DeleteServicingComponent,
     CreateServicingComponent,
     ListSolicitationComponent,
+    ListUsersComponent,
+    EditUserComponent,
+    DeleteUserComponent,
     // ServicingComponent
   ],
   imports: [
