@@ -1,0 +1,52 @@
+<mat-card style="width:478px">
+  <mat-dialog-content class="dialog">
+    <div style="display: block" *ngIf="data.warning">
+      <span class="inner-div">
+        <i style="color:yellow" class="fa fa-exclamation-triangle fa-5x" aria-hidden="true"></i>
+      </span>
+      <span class="inner-div">
+        <h2>Operação não suportada</h2><p></p>
+      </span>
+      <span class="inner-div">
+        <h5>{{data.message}}</h5>
+      </span>
+    </div>
+    <div style="display: block" *ngIf="data.error">
+      <span class="inner-div">
+        <i style="color:red" class="fa fa-times-circle fa-5x" aria-hidden="true"></i>
+      </span>
+      <span class="inner-div">
+        <h2>Erro</h2><p></p>
+      </span>
+      <span class="inner-div">
+        <h5 style="text-align: center">{{data.message}}</h5>
+      </span>
+    </div>
+    <div style="display: block" *ngIf="data.info">
+      <span class="inner-div">
+        <i style="color:yellow" class="fa fa-exclamation fa-5x" aria-hidden="true"></i>
+      </span>
+      <span class="inner-div">
+        <h2>Operação não suportada</h2><p></p>
+      </span>
+      <span class="inner-div">
+        <h5>{{data.message}}</h5>
+      </span>
+    </div>
+    <div style="display: block" *ngIf="data.success">
+      <span class="inner-div">
+        <i style="color:#00C851" class="fa fa-check fa-5x" aria-hidden="true"></i>
+      </span>
+      <span class="inner-div">
+        <h2>Sucesso</h2><p></p>
+      </span>
+      <span class="inner-div">
+        <h5>{{data.message}}</h5>
+      </span>
+    </div>
+  </mat-dialog-content>
+  <div mat-dialog-actions align="center" class="buttons">
+    <button class="botao-confirm" mat-raised-button mat-dialog-close>OK</button>
+  </div>
+</mat-card>
+

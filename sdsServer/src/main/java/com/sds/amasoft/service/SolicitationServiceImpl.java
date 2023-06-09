@@ -33,17 +33,10 @@ public class SolicitationServiceImpl implements SolicitationService {
         return repository.findAll(pageable);
     }
 
-//    public List<Configuration> findByName(String name) {
-//        return configurationRepository.findByName(name);
-//    }
 
     public List<Solicitation> findAll() {
         return repository.findAll();
     }
-
-//    public Solicitation findById(Long id) {
-//        return utils.findSolicitationOrThrowNotFound(id, repository);
-//    }
 
     @Transactional
     public Solicitation save(Solicitation solicitation){
@@ -79,7 +72,7 @@ public class SolicitationServiceImpl implements SolicitationService {
             Solicitation solicitation = new Solicitation();
             solicitation.setDate(LocalDate.now());
             solicitation.setHour(LocalTime.now());
-            solicitation.setStatus(Status.SOLICITED); // Definir o status desejado
+//            solicitation.setStatus(Status.SOLICITED); // Definir o status desejado
 
             // Buscar e definir o usuário
             Optional<User> userOptional = userService.findUserById(userId);
@@ -102,42 +95,11 @@ public class SolicitationServiceImpl implements SolicitationService {
     }
 
 
-
-//    public Solicitation createSolicitation(Long serviceId, Long userId, LocalDate date, LocalTime time) {
-//        Servicing service = servicingService.findById(serviceId);
-//        Optional<User> userOptional = userService.findUserById(userId);
-//
-//        if (userOptional.isPresent()) {
-//            User user = userOptional.get();
-//
-//            Solicitation solicitation = new Solicitation();
-//            solicitation.setService(service);
-//            solicitation.setUser(user);
-//            solicitation.setDate(date);
-//            solicitation.setHour(time);
-//            solicitation.setStatus(Status.PENDING);
-//
-//            return repository.save(solicitation);
-//        } else {
-//            throw new IllegalArgumentException("User not found");
-//        }
-//    }
-
     @Override
     public Solicitation create(Solicitation solicitation) {
         return repository.save(solicitation);
     }
 
-//    @Override
-//    public Solicitation update(Long id, Solicitation solicitation) {
-//        Solicitation existing = repository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Solicitation not found with id " + id));
-//        existing.setDate(solicitation.getDate());
-//        existing.setHour(solicitation.getHour());
-//        existing.setStatus(solicitation.getStatus());
-//        existing.setUser(solicitation.getUser());
-//        existing.setService(solicitation.getService());
-//        return repository.save(existing);
-//    }
 
     @Override
     public Solicitation update(Long id, Solicitation solicitation) {
@@ -148,6 +110,16 @@ public class SolicitationServiceImpl implements SolicitationService {
         existing.setUser(solicitation.getUser());
         existing.setService(solicitation.getService());
         return repository.save(existing);
+    }
+
+    @Override
+    public void updateStatus(Long id) {
+        Optional<Solicitation> optionalSolicitation = repository.findById(id);
+        optionalSolicitation.ifPresent(solicitation -> {
+            boolean status = solicitation.getStatus() != null && solicitation.getStatus();
+            solicitation.setStatus(!status);
+            repository.save(solicitation);
+        });
     }
 
     @Override

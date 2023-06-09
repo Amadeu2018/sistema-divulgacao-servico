@@ -7,8 +7,6 @@ k
 ;src/main/java/com/sds/amasoft/config/WebSecurityConfig.java,2\c\2ca3392fc3c4de7420fb48419b0293c7c5ae4b84
 7
 pom.xml,4\4\442292b8a7efeabbe4cc176709b833b1792140ec
-n
->src/main/java/com/sds/amasoft/service/SolicitationService.java,3\9\39dbe1f6d16f8cd4ea81e9b90429346bfe9c8448
 i
 9src/main/java/com/sds/amasoft/config/SetupDataLoader.java,0\f\0fa9e3fd09659505b85c1746da1e555b2ec4dad8
 ]

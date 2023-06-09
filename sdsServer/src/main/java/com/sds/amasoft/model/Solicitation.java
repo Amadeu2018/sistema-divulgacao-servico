@@ -45,13 +45,13 @@ public class Solicitation implements Serializable {
     @Column(name = "HOUR", nullable = false)
     private LocalTime hour;
 
-//    @Column(name = "STATUS")
-//    private Integer status;
-
     @Column(name = "STATUS")
-    @JsonManagedReference
-    @Enumerated(EnumType.STRING)
-    private Status status;
+    private Boolean status;
+
+//    @Column(name = "STATUS")
+//    @JsonManagedReference
+//    @Enumerated(EnumType.STRING)
+//    private Status status;
 
     //@Schema(description = "This is the Anime´s name", example = "Tensei Shittara Slime Datta Ken", required = true)
     @ManyToOne(fetch = FetchType.LAZY)

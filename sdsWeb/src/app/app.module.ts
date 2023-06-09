@@ -44,6 +44,7 @@ import {SolicitationService} from './_services/solicitation.service';
 import { ListUsersComponent } from './board-user/list-users/list-users.component';
 import { EditUserComponent } from './board-user/edit-user/edit-user.component';
 import { DeleteUserComponent } from './board-user/delete-user/delete-user.component';
+import { FieldErrorDisplayComponent } from './field-error-display/field-error-display.component';
 
 
 
@@ -65,6 +66,7 @@ import { DeleteUserComponent } from './board-user/delete-user/delete-user.compon
     ListUsersComponent,
     EditUserComponent,
     DeleteUserComponent,
+    FieldErrorDisplayComponent,
     // ServicingComponent
   ],
   imports: [

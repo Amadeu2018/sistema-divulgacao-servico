@@ -42,6 +42,9 @@ export class SolicitationService {
     return this.https.post<Solicitation>(`${this.baseUrl}/request?userId=${userId}&serviceId=${serviceId}`, request);
   }
 
+  getStatus(solicitation: Solicitation): Observable<any> {
+    return this.https.patch(`${this.baseUrl}/${solicitation.id}/status`, null);
+  }
 
 
 }

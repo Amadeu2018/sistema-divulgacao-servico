@@ -11,10 +11,18 @@ import java.util.List;
 public interface SolicitationService {
 
     Solicitation create(Solicitation solicitation);
+
     Solicitation update(Long id, Solicitation solicitation);
+
+    void updateStatus(Long id);
+
     void delete(Long id);
+
     Solicitation findById(Long id);
+
     List<Solicitation> findByUserId(Long userId);
+
     Page<Solicitation> findByUser(User user, Pageable pageable);
+
     Page<Solicitation> findByServiceAndStatus(Long serviceId, Status status, Pageable pageable);
 }

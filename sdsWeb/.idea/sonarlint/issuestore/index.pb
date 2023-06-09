@@ -1,6 +1,4 @@
 
-H
-src/app/app.component.ts,3\0\302be76b17ec3188653bea112207e65dde129e59
 O
 src/app/common/app.constants.ts,2\6\2669154615910e94e6a52b79d70b6ab052298b1d
 O
@@ -17,5 +15,3 @@ P
 src/index.html,5\c\5c975582791da6f060261188096d6aad85db6e09
 J
 src/app/app.component.html,0\6\06895b2dfff011115a8eded7e3fad29788965566
-E
-src/app/app.module.ts,0\2\02c004b4329a0d99c45abb61a30dadfde61ecf5d

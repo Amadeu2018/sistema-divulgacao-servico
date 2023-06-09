@@ -13,20 +13,9 @@ import {TokenStorageService} from '../../_services/token-storage.service';
 })
 export class ListSolicitationComponent implements OnInit, AfterViewInit {
 
-  // solicitations: Solicitation[] = [];
-
-  // solicitation: Solicitation = {
-  //   id: '',
-  //   date: '',
-  //   hour: '',
-  //   status: '',
-  //   user: '',
-  //   service: ''
-  // };
-
   page: Page<Solicitation>;
 
-  displayedColumns: string[] = ['id', 'date', 'hour', 'status', 'user', 'service', 'acoes'];
+  displayedColumns: string[] = ['id', 'date', 'hour', 'user', 'service', 'status'];
   dataSource = new MatTableDataSource<any>();
   @ViewChild(MatSort) sort: MatSort;
   constructor(private service: SolicitationService,
@@ -71,17 +60,23 @@ export class ListSolicitationComponent implements OnInit, AfterViewInit {
   getHour(column: {hour: string}): string {
     return column.hour;
   }
-
-  getStatus(column: {status: string}): string {
-    return column.status;
-  }
-
   getUser(column: {user: string}): string {
     return column.user;
   }
 
   getService(column: {service: string}): string {
     return column.service;
+  }
+
+
+  getStatus(column: {status: string}): string {
+    return column.status;
+  }
+
+  getStatuSolicitation(solicitation: Solicitation): void{
+    this.service.getStatus(solicitation).subscribe((response) => {
+      solicitation.status = !solicitation.status;
+    });
   }
 
   // listAll(pageNumber: number = 0, size: number = 20): void {

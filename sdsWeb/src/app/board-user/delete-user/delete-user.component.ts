@@ -1,7 +1,8 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import {MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import {User} from '../../model/user.model';
+import {UserService} from '../../_services/user.service';
 
 @Component({
   selector: 'app-delete-user',
@@ -16,12 +17,13 @@ export class DeleteUserComponent implements OnInit {
   roleOptions: { value: string; label: string }[] = [];
 
 
-  constructor(
-    private router: Router,
-    private activatedRoute: ActivatedRoute,
-    public dialogRef: MatDialogRef<DeleteUserComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: { user: User }
-  ) { }
+  constructor(private userService: UserService,
+              private router: Router,
+              private activatedRoute: ActivatedRoute,
+              public dialogRef: MatDialogRef<DeleteUserComponent>,
+              @Inject(MAT_DIALOG_DATA) public data: { user: User }
+  ) {
+  }
 
   // ngOnInit(): void {
   //   this.user = { ...this.data.user };
@@ -32,9 +34,26 @@ export class DeleteUserComponent implements OnInit {
   // }
 
   ngOnInit(): void {
-    this.user = { ...this.data.user };
+    this.user = {...this.data.user};
     this.user.role = this.data.user.role ? this.data.user.role.map(roles => roles.name) : [];
     this.selectedRole = this.getRoleName(this.user.role);
+  }
+
+  deleteService(): void {
+    this.userService.delete(this.user.id, this.user).subscribe(
+      (response) => {
+        console.log(response);
+        this.userService.message('user deleted successfully!');
+        this.router.navigate(['/user/all']).then(() => {
+          window.location.reload();
+        });
+        console.log('usuário eliminado com sucesso!!!');
+      },
+      (error) => {
+        this.userService.message('Error delete user');
+        console.log(error);
+      }
+    );
   }
 
   // getRoleName(role: string): string {

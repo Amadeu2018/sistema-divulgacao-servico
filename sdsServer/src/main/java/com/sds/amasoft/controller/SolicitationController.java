@@ -108,6 +108,14 @@ public class SolicitationController {
         }
     }
 
+    @PatchMapping("/{id}/status")
+    public ResponseEntity<Void> updateStatus(@PathVariable Long id) {
+        solicitationServiceImpl.updateStatus(id);
+        return ResponseEntity.noContent().build();
+    }
+
+
+
 
 //    @GetMapping("/byUser/{userId}")
 //    public ResponseEntity<Page<Solicitation>> findByUser(@PathVariable Long userId,

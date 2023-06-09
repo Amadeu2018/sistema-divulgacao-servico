@@ -1,8 +1,9 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import {MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import {User} from '../../model/user.model';
 import {UserService} from '../../_services/user.service';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-edit-user',
@@ -18,21 +19,21 @@ export class EditUserComponent implements OnInit {
 
 
   constructor(private userService: UserService,
-    private router: Router,
-    private activatedRoute: ActivatedRoute,
-    public dialogRef: MatDialogRef<EditUserComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: { user: User }
-  ) { }
-
-  ngOnInit(): void {
-    this.user = { ...this.data.user };
-    this.selectedRole = this.user.role ? this.user.role[0] : null;
-    this.roleOptions = this.availableRoles.map(role => {
-      return { value: role, label: this.getRoleName(role) };
-    });
+              private router: Router,
+              private activatedRoute: ActivatedRoute,
+              private snackBar: MatSnackBar,
+              public dialogRef: MatDialogRef<EditUserComponent>,
+              @Inject(MAT_DIALOG_DATA) public data: { user: User }
+  ) {
   }
 
-
+  ngOnInit(): void {
+    this.user = {...this.data.user};
+    this.selectedRole = this.user.role ? this.user.role[0] : null;
+    this.roleOptions = this.availableRoles.map(role => {
+      return {value: role, label: this.getRoleName(role)};
+    });
+  }
 
 
   // ngOnInit(): void {
@@ -71,10 +72,14 @@ export class EditUserComponent implements OnInit {
     this.userService.update(this.user.id, this.user).subscribe(
       (response) => {
         console.log(response);
-        this.router.navigate(['/user/all']);
+        this.userService.message('user updated successfully!');
+        this.router.navigate(['/user/all']).then(() => {
+          window.location.reload();
+        });
         console.log('usuário atualizado com sucesso!!!');
       },
       (error) => {
+        this.userService.message('Error update user');
         console.log(error);
       }
     );

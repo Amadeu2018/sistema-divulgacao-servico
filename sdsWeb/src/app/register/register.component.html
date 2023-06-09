@@ -18,6 +18,17 @@
 					<div *ngIf="email.errors.email">Email must be a valid email address</div>
 				</div>
 			</div>
+
+      <div class="form-group">
+        <label for="phone">Phone Number</label> <input type="text" class="form-control" name="phone" [(ngModel)]="form.phone" required minlength="3"
+                                                             maxlength="20" #phone="ngModel" />
+        <div class="alert-danger" *ngIf="f.submitted && phone.invalid">
+          <div *ngIf="phone.errors.required">Phone Number is required</div>
+          <div *ngIf="phone.errors.minlength">Phone Number must be at least 3 characters</div>
+          <div *ngIf="phone.errors.maxlength">Phone Number must be at most 20 characters</div>
+        </div>
+      </div>
+
 			<div class="form-group">
 				<label for="password">Password</label> <input type="password" class="form-control" name="password" [(ngModel)]="form.password" required minlength="6"
 					#password="ngModel" />
