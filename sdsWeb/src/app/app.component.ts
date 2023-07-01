@@ -14,6 +14,8 @@ export class AppComponent implements OnInit {
   username: string;
   isCollapsed = true;
 
+  isMenuExpanded = false;
+
   constructor(private tokenStorageService: TokenStorageService) { }
 
   isAuthenticated: TokenStorageService;
@@ -40,4 +42,13 @@ export class AppComponent implements OnInit {
     this.tokenStorageService.signOut();
     window.location.reload();
   }
+
+  toggleMenu(): void {
+    this.isMenuExpanded = !this.isMenuExpanded;
+  }
+
+  expandMenu(): void {
+    this.isMenuExpanded = true;
+  }
+
 }

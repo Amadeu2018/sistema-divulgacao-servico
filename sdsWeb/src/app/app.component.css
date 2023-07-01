@@ -19,8 +19,13 @@ header {
 }
 
 .navbar-toggler-icon {
-  background-color: #000000;
+  background-color: #ffffff;
 }
+
+.expanded .navbar-toggler-icon {
+  transform: rotate(90deg);
+}
+
 
 .container-fluid {
   padding: 0;
@@ -63,3 +68,6 @@ footer {
   margin-bottom: 0;
 }
 
+.show-menu-data .menu-data {
+  display: block;
+}

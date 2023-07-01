@@ -6,12 +6,12 @@
           <img src="/assets/img/Sinyelela,Lda.%20LOGO.jpg" width="100" alt="Alexandre">
         </a>
 
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#nav-principal">
+        <button class="navbar-toggler" type="button" (click)="toggleMenu()" [ngClass]="{'expanded': isMenuExpanded}">
           <span class="navbar-toggler-icon"></span>
         </button>
       </div>
 
-      <div class="collapse navbar-collapse" id="nav-principal">
+      <div class="collapse navbar-collapse" id="nav-principal" [ngStyle]="{'display': isMenuExpanded ? 'block' : 'none'}">
         <ul class="navbar-nav ml-auto" routerLinkActive="active">
           <li class="nav-item">
             <a href="/home" class="nav-link" routerLink="home">
