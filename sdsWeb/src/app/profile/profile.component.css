@@ -1,0 +1,127 @@
+/*Estilização geral*/
+
+.content {
+  width: 90%;
+  margin: 1.4rem auto auto auto;
+}
+
+.title {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.title h1 {
+  font-size: 2rem;
+  color: rgb(12, 9, 9);
+  font-weight: 500;
+}
+
+.buttons {
+  width: 100%;
+  text-align: start;
+}
+
+button {
+  margin-right: 5rem;
+  padding-right: 2rem;
+  padding-left: 2rem;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.half-width {
+  width: 50%;
+}
+
+/*Estilização específica para a tabela*/
+
+.table {
+  width: 100%;
+}
+
+.mat-header {
+  width: 5rem;
+}
+
+.livros {
+  color: rgb(31, 175, 175);
+  margin-left: 0.6rem;
+}
+
+.edit {
+  color: rgb(153, 80, 28);
+}
+
+.delete {
+  color: #e02525;
+  margin-left: 0.5rem;
+}
+
+/*Estilização do campo de pesquisa e botão*/
+.search-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.search-container .mat-icon {
+  margin-right: 0.5rem;
+  vertical-align: middle;
+}
+
+.search-container .toolbar-title {
+  margin-bottom: 0;
+  vertical-align: middle;
+}
+
+.search-field-container {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+}
+
+.search-field-container .mat-form-field {
+  margin-right: 1rem;
+}
+
+
+
+
+
+
+.profile-form {
+  background-color: #f5f5f5;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+label {
+  font-weight: bold;
+}
+
+.form-control-static {
+  padding-top: 7px;
+  padding-bottom: 7px;
+  margin-bottom: 0;
+  border: none;
+  border-radius: 0;
+  background-color: transparent;
+  font-size: 16px;
+}
+
+ul.list-unstyled {
+  margin-bottom: 0;
+  list-style: none;
+}
+
+ul.list-unstyled li {
+  margin-bottom: 5px;
+}

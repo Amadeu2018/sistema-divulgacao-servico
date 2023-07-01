@@ -34,9 +34,9 @@ export class BoardServiceComponent implements OnInit {
   form: FormGroup;
   service: Servicing[] = [];
   dataSource = ['photo', 'name', 'description', 'price', 'actions'];
-  totalElementos = 0;
+  totalElements = 0;
   pageNumber = 0;
-  size = 10;
+  size = 5;
   pageSizeOptions: number[] = [5, 10, 15, 100];
 
   constructor(private userService: UserService, private servicingService: ServicingService, private route: ActivatedRoute,
@@ -91,7 +91,7 @@ export class BoardServiceComponent implements OnInit {
     this.servicingService.findPageable(page, size).subscribe((response) => {
       console.log(response.content);
       this.service = response.content;
-      this.totalElementos = response.totalElements;
+      this.totalElements = response.totalElements;
       this.pageNumber = response.number;
     });
   }
@@ -150,6 +150,7 @@ export class BoardServiceComponent implements OnInit {
         console.log('response:', response); // verificar se a resposta do servidor é retornada corretamente
         if (response && response) {
           this.dialog.open(EditServicingComponent, {
+            width: '400px',
             disableClose: true,
             autoFocus: true,
             data: {
@@ -173,6 +174,7 @@ export class BoardServiceComponent implements OnInit {
         console.log('response:', response); // verificar se a resposta do servidor é retornada corretamente
         if (response && response) {
           this.dialog.open(DeleteServicingComponent, {
+            width: '400px',
             disableClose: true,
             autoFocus: true,
             data: {

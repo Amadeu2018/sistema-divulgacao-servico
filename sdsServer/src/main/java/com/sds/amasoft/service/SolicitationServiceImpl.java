@@ -1,5 +1,6 @@
 package com.sds.amasoft.service;
 
+import com.sds.amasoft.exception.BadRequestException;
 import com.sds.amasoft.exception.ResourceNotFoundException;
 import com.sds.amasoft.model.Servicing;
 import com.sds.amasoft.model.Solicitation;
@@ -29,8 +30,14 @@ public class SolicitationServiceImpl implements SolicitationService {
     private final UserServiceImpl userService;
 
 
+    @Override
     public Page<Solicitation> listAll(Pageable pageable) {
         return repository.findAll(pageable);
+    }
+
+    @Override
+    public Page<Solicitation> listAllSolicitationAccept(Pageable pageable) {
+        return repository.findAllByStatusTrue(pageable);
     }
 
 
@@ -44,56 +51,9 @@ public class SolicitationServiceImpl implements SolicitationService {
     }
 
 
-//    public void delete(Long id) {
-//        repository.delete(utils.findSolicitationOrThrowNotFound(id, repository));
-//    }
-//
-//    @Transactional
-//    public void update(Solicitation solicitation) {
-//        repository.save(solicitation);
-//    }
-//
-//    public Page<Solicitation> findByUser(User user, Pageable pageable) {
-//        return repository.findByUser(user, pageable);
-//    }
-
     public Page<Solicitation> findByServiceAndStatus(Servicing service, Status status, Pageable pageable) {
         return repository.findByServiceAndStatus(service, status, pageable);
     }
-
-    @Transactional
-    public Solicitation requestService(Long userId, Long serviceId) {
-        // Verificar se já existe uma solicitação para este serviço pelo usuário
-        if (repository.existsByUser_IdAndService_Id(userId, serviceId)) {
-            // Já existe uma solicitação
-            return null;
-        } else {
-            // Criar uma nova solicitação
-            Solicitation solicitation = new Solicitation();
-            solicitation.setDate(LocalDate.now());
-            solicitation.setHour(LocalTime.now());
-//            solicitation.setStatus(Status.SOLICITED); // Definir o status desejado
-
-            // Buscar e definir o usuário
-            Optional<User> userOptional = userService.findUserById(userId);
-            if (userOptional.isPresent()) {
-                User user = userOptional.get();
-                solicitation.setUser(user);
-            } else {
-                // Tratar o caso em que o usuário não é encontrado
-                // Exemplo: lançar uma exceção ou retornar uma resposta de erro
-                // Aqui, estou lançando uma exceção ResourceNotFoundException como exemplo:
-                throw new ResourceNotFoundException("User not found with id " + userId);
-            }
-
-            // Buscar e definir o serviço
-            Servicing service = servicingService.findById(serviceId);
-            solicitation.setService(service);
-
-            return repository.save(solicitation);
-        }
-    }
-
 
     @Override
     public Solicitation create(Solicitation solicitation) {
@@ -148,5 +108,40 @@ public class SolicitationServiceImpl implements SolicitationService {
         service.setId(serviceId);
         return repository.findByServiceAndStatus(service, status, pageable);
     }
+
+    @Override
+    @Transactional
+    public Solicitation requestService(Long userId, Long serviceId) {
+        if (existsByUserIdAndServiceId(userId, serviceId)) {
+            throw new BadRequestException("Você já fez uma solicitação para este serviço");
+        } else {
+            Solicitation solicitation = new Solicitation();
+            solicitation.setDate(LocalDate.now());
+            solicitation.setHour(LocalTime.now());
+            solicitation.setStatus(false);
+
+            Optional<User> userOptional = userService.findUserById(userId);
+            if (userOptional.isEmpty()) {
+                throw new ResourceNotFoundException("User not found with id " + userId);
+            }
+            User user = userOptional.get();
+            solicitation.setUser(user);
+
+            Servicing service = servicingService.findById(serviceId);
+            if (service == null) {
+                throw new ResourceNotFoundException("Service not found with id " + serviceId);
+            }
+            solicitation.setService(service);
+
+            return repository.save(solicitation);
+        }
+    }
+
+    @Override
+    public Boolean existsByUserIdAndServiceId(Long userId, Long serviceId) {
+        return repository.existsByUserIdAndServiceId(userId, serviceId);
+
+    }
+
 
 }

@@ -42,7 +42,7 @@ export class EditServicingComponent implements OnInit {
     this.dialogRef.close();
   }
 
-  updateService(): void {
+  update(): void {
     this.service.update(this.services.id, this.servicing).subscribe(
       (response) => {
         console.log(response);

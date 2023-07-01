@@ -1,32 +1,35 @@
+<mat-toolbar style="background-color:rgb(0,123,253);">
+  <mat-icon> sentiment_very_dissatisfied </mat-icon>
+  <span>ELIMINAR SERVIÇO</span>
+</mat-toolbar>
+
 <mat-card style="text-align: center">
-  <mat-card-header>
-    <mat-icon>face</mat-icon>
-    <h4>DELETAR SERVIÇO</h4>
-  </mat-card-header>
 
-<!--  <img-->
-<!--    class="foto" alt="img"-->
-<!--    mat-car-image-->
-<!--    src="data:image/jpg;base64,{{ services.photo }}"-->
-<!--  />-->
+  <form autocomplete="off">
+    <img class="foto" alt="img" mat-card-image [src]="imageData"/>
 
-  <img class="foto" alt="img" mat-card-image [src]="imageData"/>
-
-
-  <mat-card-content>
+    <h6 class="h5">Deseja Realmente Eliminar</h6>
     <p>
-      <strong>{{ services.name }}</strong> <br />
-      <strong>{{ services.description }}</strong><br />
-      <strong>{{ services.price }}</strong><br />
-      <strong>{{ services.solicitations }}</strong>
+      <mat-form-field class="form">
+        <input class="displayName" matInput disabled [(ngModel)]="services.name" type="text" name="displayName">
+      </mat-form-field>
     </p>
-  </mat-card-content>
+  </form>
 
-  <mat-card-actions>
-    <button (click)="delete()" class="mat-elevation-z8" mat-stroked-button color="primary">ELIMINAR</button>
+<!--  <mat-dialog-content class="dialog">-->
+<!--    <h6 class="h5">Deseja Realmente Eliminar</h6>-->
+<!--    <p>-->
+<!--      <strong>{{ services.name }}</strong> <br />-->
+<!--    </p>-->
+<!--  </mat-dialog-content>-->
 
-    <button mat-raised-button color="primary" (click)="close()">Fechar</button>
-  </mat-card-actions>
+  <mat-dialog-actions align="center" class="buttons">
+    <button mat-raised-button color="warn" (click)="close()">Cancelar</button>
+    <button mat-raised-button color="primary" style="background-color: rgb(0,123,254);" (click)="delete()">
+      ELIMINAR
+    </button>
+  </mat-dialog-actions>
+
 </mat-card>
 
 

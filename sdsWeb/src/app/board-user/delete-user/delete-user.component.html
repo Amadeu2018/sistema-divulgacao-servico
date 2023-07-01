@@ -1,9 +1,11 @@
 <!--<p>delete-user works!</p>-->
-<mat-toolbar style="background-color:rgb(189, 135, 19);">
+<mat-toolbar style="background-color:rgb(0,123,254);">
+  <mat-icon>mood_bad</mat-icon>
   <span>ELIMINAR USUÁRIO</span>
 </mat-toolbar>
 
-<mat-card>
+<mat-card style="text-align: center">
+
   <mat-dialog-content class="dialog">
     <form autocomplete="off">
       <h6 class="h5">Deseja Realmente Eliminar</h6>
@@ -12,16 +14,22 @@
           <input class="displayName" matInput disabled [(ngModel)]="user.displayName" type="text" name="displayName">
         </mat-form-field>
       </p>
-
-
     </form>
   </mat-dialog-content>
-  <div mat-dialog-actions align="center" class="buttons">
-    <button mat-raised-button mat-dialog-close>Cancelar</button>
-    <button mat-raised-button [mat-dialog-close]="true"
-            (click)="deleteService()"
-            style="background-color: rgb(189, 135, 19);">Eliminar</button>
-  </div>
+
+  <mat-dialog-actions align="center" class="buttons">
+    <button mat-raised-button color="warn" (click)="close()">Cancelar</button>
+    <button mat-raised-button color="primary" style="background-color: rgb(0,123,254);" (click)="delete()">
+      ELIMINAR
+    </button>
+  </mat-dialog-actions>
+<!--  <div mat-dialog-actions align="center" class="buttons">-->
+<!--    <button class="mat-elevation-z8" color="warn" mat-raised-button mat-dialog-close>Cancelar</button>-->
+<!--    <button class="mat-elevation-z8" mat-raised-button [mat-dialog-close]="true"-->
+<!--            (click)="delete()"-->
+<!--            style="background-color: rgb(189, 135, 19);">Eliminar</button>-->
+<!--  </div>-->
+</mat-card>
 
 <!--<mat-card style="text-align: center">-->
 <!--  <mat-card-header>-->

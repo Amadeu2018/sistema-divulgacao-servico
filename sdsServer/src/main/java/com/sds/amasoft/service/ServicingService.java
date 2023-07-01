@@ -26,14 +26,6 @@ public class ServicingService {
 
     private final ServicingRepository repository;
 
-//    private final EntityUtils<Servicing> utils;
-//    private final EntityRepository<Servicing, Long> repository;
-
-//    public ServicingService(EntityUtils<Servicing> utils, EntityRepository<Servicing, Long> repository) {
-//        this.utils = utils;
-//        this.repository = repository;
-//    }
-
 
     public Page<Servicing> listAll(Pageable pageable) {
         return repository.findAll(pageable);
@@ -43,55 +35,22 @@ public class ServicingService {
         return repository.findAll();
     }
 
-//    public List<Servicing> findByName(String name) {
-//        return repository.findByName(name);
-//    }
 
     public Servicing findById(Long id) {
         return utils.findServiceOrThrowNotFound(id, repository);
     }
-//    @Transactional
-//    public Servicing save(Servicing servicing) {
-//        if (servicing.getDateRegistration() == null) {
-//            // Se a data de registro estiver nula, defina como a data atual
-//            servicing.setDateRegistration(OffsetDateTime.now());
-//        }
-//        if (servicing.getPrice() == null || servicing.getPrice() <= 0) {
-//            // Se o preço estiver nulo ou zero, lance uma exceção
-//            throw new IllegalArgumentException("Price must be greater than zero");
-//        }
-//        return servicingRepository.save(servicing);
-//    }
-public Servicing create(Servicing servicing) {
-    servicing.getSolicitations().clear();
-    return repository.save(servicing);
-}
 
+    public Servicing create(Servicing servicing) {
+        servicing.getSolicitations().clear();
+        return repository.save(servicing);
+    }
 
-//    public Servicing save(Servicing servicing) {
-//        return repository.save(servicing);
-//    }
-
-//    @Transactional
-//    public Servicing save(Servicing servicing){
-//        //validações customizadas
-////        if (servicing.getDateRegistration() == null) {
-////            throw new IllegalArgumentException("Date registration cannot be null");
-////        }
-//        if (servicing.getPrice() == null || servicing.getPrice() <= 0){
-//            throw new IllegalArgumentException("Price must be greater than zero");
-//        }
-//        return repository.save(servicing);
-//    }
 
     public void delete(Long id) {
         Servicing servicing = findById(id);
         repository.delete(servicing);
     }
 
-//    public void delete(Long id) {
-//        repository.delete(utils.findServiceOrThrowNotFound(id, repository));
-//    }
 
     public Servicing update(Long id, Servicing servicing) {
         Servicing oldServicing = findById(id);
@@ -119,14 +78,4 @@ public Servicing create(Servicing servicing) {
         }).orElse(null);
     }
 
-
-//    public Servicing update(Long id, Servicing servicing) {
-//        Servicing oldServicing = findById(id);
-//        BeanUtils.copyProperties(servicing, oldServicing, "id");
-//        return repository.save(oldServicing);
-//    }
-//    @Transactional
-//    public void update(Servicing servicing) {
-//        repository.save(servicing);
-//    }
 }

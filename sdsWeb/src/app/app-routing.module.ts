@@ -16,6 +16,7 @@ import {ListSolicitationComponent} from './board-solicitation/list-solicitation/
 import {ListUsersComponent} from './board-user/list-users/list-users.component';
 import {EditUserComponent} from './board-user/edit-user/edit-user.component';
 import {DeleteUserComponent} from './board-user/delete-user/delete-user.component';
+import {DeleteSolicitationComponent} from './board-solicitation/delete-solicitation/delete-solicitation.component';
 
 
 const routes: Routes = [
@@ -37,6 +38,7 @@ const routes: Routes = [
   { path: 'edit-servicing/:id', component: EditServicingComponent },
   { path: 'delete-servicing/:id', component: DeleteServicingComponent },
   { path: 'solicitations', component: ListSolicitationComponent },
+  { path: 'delete-solicitations/:id', component: DeleteSolicitationComponent },
   { path: 'admin', component: BoardAdminComponent },
   { path: '', redirectTo: 'home', pathMatch: 'full' }
 ];

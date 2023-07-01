@@ -1,3 +1,5 @@
+/*Estilização geral*/
+
 .content {
   width: 90%;
   margin: 1.4rem auto auto auto;
@@ -14,10 +16,6 @@
   font-weight: 500;
 }
 
-button {
-  margin-bottom: .8rem;
-}
-
 .buttons {
   width: 100%;
   text-align: start;
@@ -29,14 +27,27 @@ button {
   padding-left: 2rem;
 }
 
-.table
-{
+.full-width {
   width: 100%;
+}
+
+.half-width {
+  width: 50%;
+}
+
+/*Estilização específica para a tabela*/
+
+.table {
+  width: 100%;
+}
+
+.mat-header {
+  width: 5rem;
 }
 
 .livros {
   color: rgb(31, 175, 175);
-  margin-left: .6rem;
+  margin-left: 0.6rem;
 }
 
 .edit {
@@ -45,17 +56,33 @@ button {
 
 .delete {
   color: #e02525;
-  margin-left: .5rem;
+  margin-left: 0.5rem;
 }
 
-.mat-header {
-  width: 5rem;
+/*Estilização do campo de pesquisa e botão*/
+.search-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
 }
 
-
-.full-width {
-  width: 100%;
+.search-container .mat-icon {
+  margin-right: 0.5rem;
+  vertical-align: middle;
 }
-.half-width {
-  width: 50%;
+
+.search-container .toolbar-title {
+  margin-bottom: 0;
+  vertical-align: middle;
+}
+
+.search-field-container {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+}
+
+.search-field-container .mat-form-field {
+  margin-right: 1rem;
 }

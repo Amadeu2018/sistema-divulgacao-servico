@@ -1,46 +1,42 @@
-<mat-toolbar style="background-color:rgb(189, 135, 19);">
-  <span>EDITAR USUÁRIO</span>
-</mat-toolbar><mat-card>
+<mat-toolbar style="background-color:rgb(0,123,254);">
+  <mat-icon>sentiment_very_dissatisfied</mat-icon>
+  <span>ELIMINAR SOLICITAÇÃO</span>
+</mat-toolbar>
+
+<mat-card style="text-align: center">
 
   <mat-dialog-content class="dialog">
     <form autocomplete="off">
-
-      <p>
         <mat-form-field class="form">
           <mat-label>NOME</mat-label>
-          <input matInput disabled [(ngModel)]="user.displayName" type="text" name="displayName" placeholder="Ex. Alexandre">
+          <input matInput disabled [(ngModel)]="user.displayName" type="text" name="displayName">
         </mat-form-field>
-      </p>
 
-      <p>
         <mat-form-field class="form">
           <mat-label>E-MAIL</mat-label>
-          <input matInput [(ngModel)]="user.email" type="text" name="email" placeholder="Ex. alexandre@amasoft.com">
+          <input matInput [(ngModel)]="user.email" type="text" name="email">
         </mat-form-field>
-      </p>
 
-      <p>
         <mat-form-field class="form">
           <mat-label>TELEFONE</mat-label>
-          <input matInput [(ngModel)]="user.phone" type="text" name="phone" placeholder="Ex. +244 999 999 999">
+          <input matInput [(ngModel)]="user.phone" type="text" name="phone">
         </mat-form-field>
-      </p>
 
-      <p>
         <mat-form-field class="form">
           <mat-label>PERFIL</mat-label>
                   <mat-select [(ngModel)]="selectedRole" name="role">
                     <mat-option *ngFor="let option of roleOptions" [value]="option.value">{{ option.label }}</mat-option>
                   </mat-select>
         </mat-form-field>
-      </p>
 
     </form>
   </mat-dialog-content>
-  <div mat-dialog-actions align="center" class="buttons">
-    <button mat-raised-button mat-dialog-close>Cancelar</button>
-    <button mat-raised-button [mat-dialog-close]="true" (click)="updateService()" style="background-color: rgb(189, 135, 19);">Editar</button>
-  </div>
+
+  <mat-dialog-actions align="center" class="buttons">
+    <button mat-raised-button color="warn" (click)="close()">Cancelar</button>
+    <button mat-raised-button color="primary" style="background-color: rgb(0,123,254);" (click)="update()">Editar</button>
+  </mat-dialog-actions>
+</mat-card>
 
 
   <!--<mat-card style="text-align: center">-->

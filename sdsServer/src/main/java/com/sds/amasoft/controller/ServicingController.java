@@ -27,7 +27,7 @@ import java.util.Optional;
 public class ServicingController {
 
     private final ServicingService servicingService;
-    private final SolicitationServiceImpl solicitationServiceImpl;
+//    private final SolicitationServiceImpl solicitationServiceImpl;
 
     private final UserServiceImpl userService;
 
@@ -48,10 +48,6 @@ public class ServicingController {
         return ResponseEntity.ok(servicingService.findById(id));
     }
 
-//    @GetMapping(path = "/find")
-//    public ResponseEntity<List<Servicing>> findByName(@RequestParam(value = "name") String name) {
-//        return ResponseEntity.ok(servicingService.findByName(name));
-//    }
 
     @PostMapping
     public ResponseEntity<Servicing> create(@RequestBody @Valid Servicing servicing) {
@@ -70,11 +66,6 @@ public class ServicingController {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
-//    @PutMapping
-//    public ResponseEntity<Void> update(@RequestBody Servicing servicing) {
-//        servicingService.update(servicing);
-//        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-//    }
 
     @PutMapping("/{id}")
     public ResponseEntity<Servicing> update(@PathVariable Long id, @RequestBody @Valid Servicing servicing) {
@@ -87,19 +78,5 @@ public class ServicingController {
         byte[] updateImgServing = servicingService.addImg(id, arquivo);
         return ResponseEntity.ok(updateImgServing);
     }
-
-
-//    @PutMapping("/{id}")
-//    public ResponseEntity<Servicing> update(@PathVariable Long id, @RequestBody @Valid Servicing servicing) {
-//        Servicing updatedServicing = servicingService.update(id, servicing);
-//        return ResponseEntity.ok(updatedServicing);
-//    }
-
-//    @PutMapping("/{id}")
-//    public ResponseEntity<Void> update(@PathVariable("id") Long id, @RequestBody Servicing servicing) {
-//        servicing.setId(id);
-//        servicingService.update(servicing);
-//        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-//    }
 
 }

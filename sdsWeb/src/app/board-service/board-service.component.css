@@ -1,79 +1,4 @@
-:host {
-  display: block;
-  padding: 0 20px;
-}
-
-table {
-  margin-top: 10px;
-  border-collapse: collapse;
-}
-th {
-  text-align: left;
-  border-bottom: 2px solid #ddd;
-  padding: 8px;
-}
-td {
-  border-top: 1px solid #ddd;
-  padding: 8px;
-}
-
-
-
-/*.content {*/
-/*  width: 90%;*/
-/*  margin: 1.4rem auto auto auto;*/
-/*}*/
-
-/*.title {*/
-/*  text-align: center;*/
-/*  margin-bottom: 3rem;*/
-/*}*/
-
-/*.title h1 {*/
-/*  font-size: 2rem;*/
-/*  color: rgb(12, 9, 9);*/
-/*  font-weight: 500;*/
-/*}*/
-
-/*button {*/
-/*  margin-bottom: .8rem;*/
-/*}*/
-
-/*.buttons {*/
-/*  width: 100%;*/
-/*  text-align: start;*/
-/*}*/
-
-/*button {*/
-/*  margin-right: 5rem;*/
-/*  padding-right: 2rem;*/
-/*  padding-left: 2rem;*/
-/*}*/
-
-/*.table*/
-/*{*/
-/*  width: 100%;*/
-/*}*/
-
-/*.livros {*/
-/*  color: rgb(31, 175, 175);*/
-/*  margin-left: .6rem;*/
-/*}*/
-
-/*.edit {*/
-/*  color: rgb(153, 80, 28);*/
-/*}*/
-
-/*.delete {*/
-/*  color: #e02525;*/
-/*  margin-left: .5rem;*/
-/*}*/
-
-/*.mat-header {*/
-/*  width: 5rem;*/
-/*}*/
-
-
+/*Estilização geral*/
 
 .content {
   width: 90%;
@@ -91,10 +16,6 @@ td {
   font-weight: 500;
 }
 
-button {
-  margin-bottom: .8rem;
-}
-
 .buttons {
   width: 100%;
   text-align: start;
@@ -106,14 +27,27 @@ button {
   padding-left: 2rem;
 }
 
-.table
-{
+.full-width {
   width: 100%;
+}
+
+.half-width {
+  width: 50%;
+}
+
+/*Estilização específica para a tabela*/
+
+.table {
+  width: 100%;
+}
+
+.mat-header {
+  width: 5rem;
 }
 
 .livros {
   color: rgb(31, 175, 175);
-  margin-left: .6rem;
+  margin-left: 0.6rem;
 }
 
 .edit {
@@ -122,17 +56,33 @@ button {
 
 .delete {
   color: #e02525;
-  margin-left: .5rem;
+  margin-left: 0.5rem;
 }
 
-.mat-header {
-  width: 5rem;
+/*Estilização do campo de pesquisa e botão*/
+.search-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
 }
 
-
-.full-width {
-  width: 100%;
+.search-container .mat-icon {
+  margin-right: 0.5rem;
+  vertical-align: middle;
 }
-.half-width {
-  width: 50%;
+
+.search-container .toolbar-title {
+  margin-bottom: 0;
+  vertical-align: middle;
+}
+
+.search-field-container {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+}
+
+.search-field-container .mat-form-field {
+  margin-right: 1rem;
 }

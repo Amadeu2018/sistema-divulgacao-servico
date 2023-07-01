@@ -1,8 +1,20 @@
 <!--<pre>{{ page | json }}</pre>-->
 
 <mat-toolbar>
-  <mat-icon>table_chart</mat-icon>
-  SOLICITAÇÕES
+  <div class="search-container">
+    <mat-icon>view_list</mat-icon>
+    <h1 class="toolbar-title">SOLICITAÇÕES</h1>
+  </div>
+
+  <div class="search-field-container">
+    <mat-form-field>
+      <input matInput placeholder="Pesquisar" [(ngModel)]="searchFilter.searchText">
+    </mat-form-field>
+
+    <button mat-icon-button (click)="search()">
+      <mat-icon>search</mat-icon>
+    </button>
+  </div>
 </mat-toolbar>
 
 <mat-tab-group>
@@ -12,8 +24,7 @@
       Todos
     </ng-template>
     <mat-card>
-      <table mat-table [dataSource]="dataSource" class="full-width">
-
+      <table mat-table [dataSource]="allSolicitationsDataSource" class="full-width">
         <ng-container matColumnDef="id">
           <th mat-header-cell *matHeaderCellDef> ID </th>
           <td mat-cell *matCellDef="let row"> {{ row.id }} </td>
@@ -29,10 +40,65 @@
           <td mat-cell *matCellDef="let row"> {{ row.hour }} </td>
         </ng-container>
 
-<!--        <ng-container matColumnDef="status">-->
-<!--          <th mat-header-cell *matHeaderCellDef> STATUS </th>-->
-<!--          <td mat-cell *matCellDef="let row"> {{ row.status }} </td>-->
-<!--        </ng-container>-->
+        <ng-container matColumnDef="user">
+          <th mat-header-cell *matHeaderCellDef> USUÁRIO </th>
+          <td mat-cell *matCellDef="let row"> {{ row.user.displayName }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="service">
+          <th mat-header-cell *matHeaderCellDef> SERVIÇO </th>
+          <td mat-cell *matCellDef="let row"> {{ row.service.name }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="status">
+          <th mat-header-cell *matHeaderCellDef> AÇÕES </th>
+          <td mat-cell *matCellDef="let row">
+            <a href="/solicitations" (click)="getStatuSolicitation(row)">
+              <mat-icon>{{
+                row.status ? "thumb_up_alt" : "thumb_down_alt"
+                }}</mat-icon>
+            </a>
+
+            <a class="delete" (click)="delete(row.id)">
+              <i class="material-icons">delete</i>
+            </a>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="['id', 'date', 'hour', 'user', 'service', 'status']"></tr>
+        <tr mat-row *matRowDef="let row; columns: ['id', 'date', 'hour', 'user', 'service', 'status']"></tr>
+      </table>
+      <mat-paginator
+        [length]="page?.totalElements"
+        [pageSize]="pageSize"
+        [pageSizeOptions]="[5, 10, 15, 100]"
+        (page)="handlePageEvent($event)">
+      </mat-paginator>
+    </mat-card>
+  </mat-tab>
+
+  <mat-tab>
+    <ng-template mat-tab-label>
+      <mat-icon>check_circle</mat-icon>
+      Atendidas
+    </ng-template>
+
+    <mat-card>
+      <table mat-table [dataSource]="statusTrueDataSource" class="full-width">
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef> ID </th>
+          <td mat-cell *matCellDef="let row"> {{ row.id }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="date">
+          <th mat-header-cell *matHeaderCellDef> DATA </th>
+          <td mat-cell *matCellDef="let row"> {{ row.date }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="hour">
+          <th mat-header-cell *matHeaderCellDef> HORA </th>
+          <td mat-cell *matCellDef="let row"> {{ row.hour }} </td>
+        </ng-container>
 
         <ng-container matColumnDef="user">
           <th mat-header-cell *matHeaderCellDef> USUÁRIO </th>
@@ -45,42 +111,89 @@
         </ng-container>
 
         <ng-container matColumnDef="status">
-          <th mat-header-cell *matHeaderCellDef>STATUS</th>
+          <th mat-header-cell *matHeaderCellDef> AÇÕES </th>
           <td mat-cell *matCellDef="let row">
             <a href="/solicitations" (click)="getStatuSolicitation(row)">
               <mat-icon>{{
                 row.status ? "thumb_up_alt" : "thumb_down_alt"
                 }}</mat-icon>
             </a>
+
+            <a class="delete" (click)="delete(row.id)">
+              <i class="material-icons">delete</i>
+            </a>
           </td>
         </ng-container>
 
         <tr mat-header-row *matHeaderRowDef="['id', 'date', 'hour', 'user', 'service', 'status']"></tr>
         <tr mat-row *matRowDef="let row; columns: ['id', 'date', 'hour', 'user', 'service', 'status']"></tr>
-
       </table>
-      <mat-paginator [length]="page?.totalElements" [pageSize]="page?.size" [pageSizeOptions]="[10, 20, 50, 100]"></mat-paginator>
-
+      <mat-paginator
+        [length]="page?.totalElements"
+        [pageSize]="pageSize"
+        [pageSizeOptions]="[5, 10, 15, 100]"
+        (page)="handlePageEvent($event)">
+      </mat-paginator>
     </mat-card>
   </mat-tab>
 
   <mat-tab>
     <ng-template mat-tab-label>
-      <mat-icon>thumb_down_alt</mat-icon>
+      <mat-icon>highlight_off</mat-icon>
       Não Atendidas
     </ng-template>
 
-    <mat-card class="half-width">
-    </mat-card>
-  </mat-tab>
+    <mat-card>
+      <table mat-table [dataSource]="statusFalseDataSource" class="full-width">
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef> ID </th>
+          <td mat-cell *matCellDef="let row"> {{ row.id }} </td>
+        </ng-container>
 
-  <mat-tab>
-    <ng-template mat-tab-label>
-      <mat-icon>thumb_up_alt</mat-icon>
-      Atendidas
-    </ng-template>
+        <ng-container matColumnDef="date">
+          <th mat-header-cell *matHeaderCellDef> DATA </th>
+          <td mat-cell *matCellDef="let row"> {{ row.date }} </td>
+        </ng-container>
 
-    <mat-card class="half-width">
+        <ng-container matColumnDef="hour">
+          <th mat-header-cell *matHeaderCellDef> HORA </th>
+          <td mat-cell *matCellDef="let row"> {{ row.hour }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="user">
+          <th mat-header-cell *matHeaderCellDef> USUÁRIO </th>
+          <td mat-cell *matCellDef="let row"> {{ row.user.displayName }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="service">
+          <th mat-header-cell *matHeaderCellDef> SERVIÇO </th>
+          <td mat-cell *matCellDef="let row"> {{ row.service.name }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="status">
+          <th mat-header-cell *matHeaderCellDef> AÇÕES </th>
+          <td mat-cell *matCellDef="let row">
+            <a href="/solicitations" (click)="getStatuSolicitation(row)">
+              <mat-icon>{{
+                row.status ? "thumb_up_alt" : "thumb_down_alt"
+                }}</mat-icon>
+            </a>
+
+            <a class="delete" (click)="delete(row.id)">
+              <i class="material-icons">delete</i>
+            </a>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="['id', 'date', 'hour', 'user', 'service', 'status']"></tr>
+        <tr mat-row *matRowDef="let row; columns: ['id', 'date', 'hour', 'user', 'service', 'status']"></tr>
+      </table>
+      <mat-paginator
+        [length]="page?.totalElements"
+        [pageSize]="pageSize"
+        [pageSizeOptions]="[5, 10, 15, 100]"
+        (page)="handlePageEvent($event)">
+      </mat-paginator>
     </mat-card>
   </mat-tab>
 </mat-tab-group>

@@ -25,52 +25,44 @@
 <!--</mat-card>-->
 
 <!--&lt;!&ndash;<pre>{{ service | json }}</pre>&ndash;&gt;-->
-<mat-card style="text-align: center">
-  <mat-card-header>
-    <h1>ATUALIZAR SERVIÇOS</h1>
-  </mat-card-header>
+<mat-toolbar style="background-color:rgb(0,123,253);">
+  <mat-icon> insert_emoticon</mat-icon>
+  <span>EDITAR SERVIÇOS</span>
+</mat-toolbar>
 
-    <mat-card-content>
-<form>
+<mat-card>
 
-  <!--  <mat-form-field class="form">-->
-<!--    <mat-label>ID</mat-label>-->
-<!--    <input matInput [(ngModel)]="service.id" type="text" name="id">-->
-<!--  </mat-form-field>-->
+  <mat-dialog-content class="dialog">
+    <form autocomplete="off">
+      <mat-form-field class="form">
+        <mat-label>Nome</mat-label>
+        <input matInput [(ngModel)]="servicing.name" type="text" name="name">
+      </mat-form-field>
 
-  <mat-form-field class="form">
-    <mat-label>Nome</mat-label>
-    <input matInput [(ngModel)]="servicing.name" type="text" name="name">
-  </mat-form-field>
+      <mat-form-field class="form">
+        <mat-label>Preço</mat-label>
+        <input matInput [(ngModel)]="servicing.price" type="text" name="price">
+      </mat-form-field>
 
-  <mat-form-field class="form">
-    <mat-label>Preço</mat-label>
-    <input matInput [(ngModel)]="servicing.price" type="text" name="price">
-  </mat-form-field>
+      <mat-form-field class="form">
+        <mat-label>Descrição</mat-label>
+        <textarea matInput [(ngModel)]="servicing.description" type="text" name="description"></textarea>
+      </mat-form-field>
 
-  <mat-form-field class="form">
-    <mat-label>Descrição</mat-label>
-    <textarea matInput [(ngModel)]="servicing.description" type="text" name="description"></textarea>
-  </mat-form-field>
+      <!--  <mat-form-field class="form">-->
+      <!--    <mat-label>Imangem</mat-label>-->
+      <!--    <textarea matInput [(ngModel)]="servicing.images" type="text" name="images"></textarea>-->
+      <!--  </mat-form-field>-->
 
-<!--  <mat-form-field class="form">-->
-<!--    <mat-label>Imangem</mat-label>-->
-<!--    <textarea matInput [(ngModel)]="servicing.images" type="text" name="images"></textarea>-->
-<!--  </mat-form-field>-->
+      <!--  <mat-form-field class="form">-->
+      <!--    <mat-label>Solicitação</mat-label>-->
+      <!--    <textarea matInput [(ngModel)]="servicing.solicitations" type="text" name="solicitations"></textarea>-->
+      <!--  </mat-form-field>-->
 
-<!--  <mat-form-field class="form">-->
-<!--    <mat-label>Solicitação</mat-label>-->
-<!--    <textarea matInput [(ngModel)]="servicing.solicitations" type="text" name="solicitations"></textarea>-->
-<!--  </mat-form-field>-->
-
-</form>
-    </mat-card-content>
-    <mat-card-actions>
-      <div class="buttons">
-        <button (click)="updateService()" class="mat-elevation-z8" mat-stroked-button color="primary">ATUALIZAR</button>
-        <!--    <button (click)="cancel()" class="mat-elevation-z8" mat-stroked-button color="warn">CANCELAR</button>-->
-        <button mat-raised-button color="primary" (click)="close()">Fechar</button>
-      </div>
-    </mat-card-actions>
+    </form>
+  </mat-dialog-content>
+  <mat-dialog-actions align="center" class="buttons">
+    <button mat-raised-button color="warn" (click)="close()">Cancelar</button>
+    <button mat-raised-button color="primary" style="background-color: rgb(0,123,254);" (click)="update()">Editar</button>
+  </mat-dialog-actions>
 </mat-card>
-

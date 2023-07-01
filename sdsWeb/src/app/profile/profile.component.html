@@ -1,15 +1,56 @@
-<div class="container" *ngIf="currentUser; else loggedOut">
-	<div>
-		<h6 class="text-muted py-5">
-			<strong>{{ currentUser.displayName }}</strong> Profile
-		</h6>
-	</div>
-	<p>
-		<strong>Email:</strong> {{ currentUser.email }}
-	</p>
-	<strong>Roles:</strong>
-	<ul>
-		<li *ngFor="let role of currentUser.roles">{{ role }}</li>
-	</ul>
-</div>
-<ng-template #loggedOut> Please login. </ng-template>
+<mat-toolbar class="search-container">
+  <div class="search-container">
+    <mat-icon>people</mat-icon>
+    <h1 class="toolbar-title">Perfil {{ currentUser.displayName }}</h1>
+  </div>
+</mat-toolbar>
+
+<mat-tab-group>
+  <mat-tab>
+<!--    <ng-template mat-tab-label>-->
+<!--      <mat-icon>list</mat-icon>-->
+<!--      Todos-->
+<!--    </ng-template>-->
+    <mat-card>
+
+      <div class="container" *ngIf="currentUser; else loggedOut">
+
+        <form class="profile-form">
+          <div class="form-group">
+            <label>Email:</label>
+            <p class="form-control-static">{{ currentUser.email }}</p>
+          </div>
+
+          <div class="form-group">
+            <label>Roles:</label>
+            <ul class="list-unstyled">
+              <li *ngFor="let role of currentUser.roles">{{ role }}</li>
+            </ul>
+          </div>
+        </form>
+      </div>
+
+      <ng-template #loggedOut>
+        Please login.
+      </ng-template>
+
+    </mat-card>
+  </mat-tab>
+</mat-tab-group>
+
+
+<!--<div class="container" *ngIf="currentUser; else loggedOut">-->
+<!--	<div>-->
+<!--		<h6 class="text-muted py-5">-->
+<!--			<strong>{{ currentUser.displayName }}</strong> Profile-->
+<!--		</h6>-->
+<!--	</div>-->
+<!--	<p>-->
+<!--		<strong>Email:</strong> {{ currentUser.email }}-->
+<!--	</p>-->
+<!--	<strong>Roles:</strong>-->
+<!--	<ul>-->
+<!--		<li *ngFor="let role of currentUser.roles">{{ role }}</li>-->
+<!--	</ul>-->
+<!--</div>-->
+<!--<ng-template #loggedOut> Please login. </ng-template>-->

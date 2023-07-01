@@ -68,7 +68,7 @@ export class EditUserComponent implements OnInit {
     this.dialogRef.close();
   }
 
-  updateService(): void {
+  update(): void {
     this.userService.update(this.user.id, this.user).subscribe(
       (response) => {
         console.log(response);

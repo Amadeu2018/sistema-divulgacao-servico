@@ -1,0 +1,30 @@
+<mat-toolbar style="background-color:rgb(0,123,254);">
+  <mat-icon>sentiment_very_dissatisfied</mat-icon>
+  <span>ELIMINAR SOLICITAÇÃO</span>
+</mat-toolbar>
+
+<mat-card style="text-align: center">
+
+  <mat-dialog-content class="dialog">
+    <h6 class="h5">Deseja Realmente Eliminar</h6>
+    <p>
+      <mat-form-field class="form">
+        <input class="displayName" matInput disabled [(ngModel)]="solicitations.user" type="text" name="displayName">
+      </mat-form-field>
+      <mat-form-field class="form">
+        <input class="displayName" matInput disabled [(ngModel)]="solicitations.service" type="text" name="displayName">
+      </mat-form-field>
+<!--      Usuário: <strong>{{ solicitations?.user}}</strong> <br />-->
+<!--      Serviço solicitado: <strong>{{ solicitations?.service }}</strong>-->
+    </p>
+  </mat-dialog-content>
+
+  <mat-dialog-actions align="center" class="buttons">
+    <button mat-raised-button color="warn" (click)="close()">Cancelar</button>
+    <button mat-raised-button color="primary" style="background-color: rgb(0,123,254);" (click)="delete()">
+      ELIMINAR
+    </button>
+  </mat-dialog-actions>
+</mat-card>
+
+<!--<pre>{{ solicitation | json }}</pre>-->

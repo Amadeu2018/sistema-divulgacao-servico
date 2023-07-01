@@ -7,8 +7,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -28,16 +26,6 @@ public class Solicitation implements Serializable {
 //    @Column(name = "SOLICITATION_ID", nullable = false)
     private Long id;
 
-//    @Enumerated(EnumType.STRING)
-//    private Status status;
-
-
-    //@Schema(description = "This is the Anime´s name", example = "Tensei Shittara Slime Datta Ken", required = true)
-//    @DateTimeFormat(pattern	=	"dd-MM-yyyy")
-//    @NotNull
-//    @NotEmpty(message = "The date of this service cannot be empty")
-//    @Column(name = "DATE")
-//    private Date date;
 
     @Column(name = "DATE", nullable = false)
     private LocalDate date;
@@ -48,11 +36,6 @@ public class Solicitation implements Serializable {
     @Column(name = "STATUS")
     private Boolean status;
 
-//    @Column(name = "STATUS")
-//    @JsonManagedReference
-//    @Enumerated(EnumType.STRING)
-//    private Status status;
-
     //@Schema(description = "This is the Anime´s name", example = "Tensei Shittara Slime Datta Ken", required = true)
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "USER_ID", nullable = false)
@@ -62,8 +45,5 @@ public class Solicitation implements Serializable {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "SERVICE_ID", nullable = false)
     private Servicing service;
-
-//    @OneToMany(mappedBy = "solicitation", cascade = CascadeType.ALL, orphanRemoval = true)
-//    private List<Image> images = new ArrayList<>();
 
 }

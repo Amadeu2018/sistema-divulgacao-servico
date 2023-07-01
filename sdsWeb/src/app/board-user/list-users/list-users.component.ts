@@ -8,7 +8,7 @@ import {MatDialog} from '@angular/material/dialog';
 import {ActivatedRoute, Router} from '@angular/router';
 import {MatPaginator, PageEvent} from '@angular/material/paginator';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import {MatSnackBar} from '@angular/material/snack-bar';
 import {EditUserComponent} from '../edit-user/edit-user.component';
 import {DeleteUserComponent} from '../delete-user/delete-user.component';
 
@@ -26,7 +26,12 @@ export class ListUsersComponent implements OnInit, AfterViewInit {
   dataSource = new MatTableDataSource<any>();
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(private userService: UserService, private router: Router, private fb: FormBuilder, private dialog: MatDialog, private snackBar: MatSnackBar) { }
+  constructor(private userService: UserService,
+              private router: Router, private fb: FormBuilder,
+              private dialog: MatDialog,
+              private snackBar: MatSnackBar
+  ) {
+  }
 
   ngOnInit(): void {
     this.listAll();
@@ -82,6 +87,7 @@ export class ListUsersComponent implements OnInit, AfterViewInit {
         console.log('response:', response);
         if (response) {
           this.dialog.open(EditUserComponent, {
+            width: '400px',
             disableClose: true,
             autoFocus: true,
             data: {
@@ -97,12 +103,13 @@ export class ListUsersComponent implements OnInit, AfterViewInit {
   }
 
 
-  delete(id: any): void{
+  delete(id: any): void {
     this.userService.findById(id).subscribe(
       (response) => {
         console.log('response:', response);
         if (response) {
           this.dialog.open(DeleteUserComponent, {
+            width: '400px',
             disableClose: true,
             autoFocus: true,
             data: {

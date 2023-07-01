@@ -39,7 +39,7 @@ export class DeleteUserComponent implements OnInit {
     this.selectedRole = this.getRoleName(this.user.role);
   }
 
-  deleteService(): void {
+  delete(): void {
     this.userService.delete(this.user.id, this.user).subscribe(
       (response) => {
         console.log(response);
